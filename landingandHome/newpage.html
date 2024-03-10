@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Printtie_Home</title>
+    <!-- 파비콘 -->
+    <link rel="icon" href="https://ifh.cc/g/NC6LO0.png" />
+
+    <link rel="stylesheet" type="text/css" href="newstyle.css" />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"
+    />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-D7QFQFSRFL"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-D7QFQFSRFL");
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <h1 onclick="refreshPage();" style="cursor: pointer">
+          <div class="black">
+            Print<span class="red" style="color: #e7404a">t</span>ie
+          </div>
+        </h1>
+        <br />
+        <div class="tab_bar">
+          <input type="radio" name="tabs" id="tab1" checked />
+          <label for="tab1" id="label1">대행신청서</label>
+          <input type="radio" name="tabs" id="tab2" />
+          <label for="tab2" id="label2">배송신청서</label>
+        </div>
+      </div>
+      <div class="main">
+        <div id="content1" class="tab-content tab1">
+          <div id="main_content1">
+            <div class="discription">
+              <div id="title1">안내</div>
+              <div class="status">
+                <div class="bold">현재 영업 상태</div>
+                <div class="medium">
+                  입금이 완료되면 바로 출력을 진행합니다.
+                </div>
+                <div class="status_box">
+                  <button class="boxes" id="box1" disabled>
+                    <i class="xi-caret-up-min" id="arrow1"></i>&nbsp;&nbsp;1차
+                    주문접수 중 (오전 10:00 ~ 오후 1:00)
+                  </button>
+                  <button class="boxes" id="box2" disabled>
+                    <i class="xi-caret-up-min" id="arrow2"></i>&nbsp;&nbsp;2차
+                    주문접수 중 (오후 4:00 ~ 오후 7:00)
+                  </button>
+                  <button class="boxes" id="box3" disabled>
+                    <i class="xi-caret-up-min" id="arrow3"></i>&nbsp;&nbsp;영업
+                    준비 중 (또는 휴무)
+                  </button>
+                </div>
+              </div>
+              <ol class="smallnum_list">
+                <li class="smallnum">
+                  <p>
+                    ① 접수 및 출력은 하루에 두 번 진행합니다.
+                    <span class="red">현재 영업 상태</span>를 확인해주세요.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ② <span class="red"> 월요일은 1차만</span> 진행하며,
+                    <span class="red"> 화요일은 휴무</span>입니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter"
+                      >* 개인 사정으로 주문을 받지 못하는 경우, 사전에
+                      공지해드립니다.</span
+                    >
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ③ 상황에 맞게
+                    <span class="red"> 주문방법</span>을 선택할 수 있습니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter"> * 카카오 알림톡, 이메일 </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ④ 접수 시간 내 미입금된 주문은
+                    <span class="red"> 자동 취소</span>됩니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ⑤ 인화된 사진은 <span class="red">무료</span>로
+                    보관해드립니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 최대 보관일수는 90일입니다.
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ⑥
+                    <span class="red"> 주문이 갑자기 몰리는 경우,</span> 사진
+                    출력이 지연될 수 있습니다.
+                  </p>
+                </li>
+              </ol>
+            </div>
+            <div class="notification">
+              <div id="title2">주의사항</div>
+              <ol class="smallnum_list">
+                <li class="smallnum">
+                  <p>
+                    ① 주문방법에 따라
+                    <span class="red">서로 다른 아이디(ID)</span>로 식별됩니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 전화번호(카카오 알림톡) = 이름 + 전화번호
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter"> * 이메일 = 이름 + 이메일 </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ②<span class="red">
+                      전화번호(또는 이메일), 이름, 코드정보</span
+                    >를 정확히 입력해주세요.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 영문 이름 및 이메일은 소문자로 입력해주세요.
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ③
+                    <span class="red"
+                      >인쇄코드를 잘못 입력했거나 기한이 만료된 경우,</span
+                    >
+                    해당 코드는 임의로 취소하고 당일 환불해드립니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ④
+                    <span class="red"
+                      >페이지수나 상품명(사이즈)를 잘못 입력하신 경우,</span
+                    >
+                    추가입금 또는 환불액이 발생할 수 있습니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter"
+                      >* 추가입금액이 10,000원 이상 발생하는 코드는 임의로
+                      취소합니다.</span
+                    >
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ⑤ <span class="red">출력정보</span>는 카카오 알림톡(또는
+                    이메일)에서 확인할 수 있습니다.
+                  </p>
+                </li>
+              </ol>
+            </div>
+            <div class="bottom">
+              <div class="dropdown">선택(유형)</div>
+              <ul class="dropdown-list">
+                <li id="option1">선택(유형)</li>
+                <li id="option2">프린팅박스</li>
+                <li>폴라폴라 (서비스 준비중)</li>
+                <li>넷프린트 (미정)</li>
+                <li>아이본 (미정)</li>
+              </ul>
+              <button
+                id="proxy_application"
+                disabled
+                onclick="redirectToNext()"
+              >
+                대행신청서 작성하기
+              </button>
+            </div>
+          </div>
+          <div id="break_point"></div>
+          <div id="FAQ_content1">
+            <div class="FAQ">
+              <div class="FAQ_intro">
+                <div class="FAQ_title">&nbsp;&nbsp;주요 FAQ</div>
+                <div class="FAQ_subtitle">
+                  &nbsp;&nbsp;자주 묻는 질문을 확인해보세요
+                </div>
+              </div>
+              <div class="faq-container">
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span class="faq-question-text"
+                      >&nbsp;&nbsp;<i class="xi-lightbulb-o"></i>&nbsp;수고비는
+                      얼마인가요?</span
+                    >
+                    <i class="xi-caret-up-min" id="faq_arrow1"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p><b>A.</b> 수고비는 <b>출력횟수당 200원</b>입니다.</p>
+                    <p>
+                      만약 한 개의 코드에 10장의 이미지가 등록되어 있다면, 1회
+                      출력 요청 시
+                      <b>10장에 대한 수고비는 2,000원이 아니라 200원입니다.</b>
+                    </p>
+                    <p>
+                      인증사진은 요청 시 <b>500원의 추가금액</b>이 발생합니다.
+                      자세한 내용은
+                      <b>대행신청서 작성하기 > 가격표</b> 페이지에서
+                      확인해주세요.
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span class="faq-question-text"
+                      >&nbsp;&nbsp;<i class="xi-lightbulb-o"></i>&nbsp;장수와
+                      사이즈에 제한은 없나요?</span
+                    >
+                    <i class="xi-caret-up-min" id="faq_arrow2"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>
+                      <b>A.</b> 프린티에서는
+                      <b>원하는 사이즈의 사진을 무제한</b>
+                      출력할 수 있습니다.
+                    </p>
+                    <p>
+                      다만, 한 번에 작성할 수 있는 코드가
+                      <b>최대 10개</b>이기 때문에 주문할 코드가 11개 이상인
+                      경우, <b>신청서를 추가로 작성해야 합니다.</b>
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span class="faq-question-text"
+                      >&nbsp;&nbsp;<i class="xi-lightbulb-o"></i>&nbsp;출력은
+                      어떤 방식으로 진행되나요?</span
+                    >
+                    <i class="xi-caret-up-min" id="faq_arrow3"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>
+                      <b>A.</b> 입금이 완료되면 접수 후, 바로 사진을 출력합니다.
+                      주문이 몰리는 경우에는
+                      <b>입금이 완료된 순서대로</b> 출력을 진행합니다.
+                    </p>
+                    <p>
+                      대기 번호는 <b>입금완료 알림톡(또는 이메일)</b>에서 확인할
+                      수 있으며,
+                      <b
+                        >입금완료된 주문은 취소 및 변경이 어려울 수 있습니다.</b
+                      >
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span class="faq-question-text"
+                      >&nbsp;&nbsp;<i class="xi-lightbulb-o"></i
+                      >&nbsp;추가입금이나 환불은 어떻게 하나요?</span
+                    >
+                    <i class="xi-caret-up-min" id="faq_arrow4"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>
+                      <b>A.</b> 출력이 완료되면
+                      <b
+                        >카카오 알림톡(또는 이메일)로 출력정보 메시지가
+                        발송됩니다.</b
+                      >
+                    </p>
+                    <p>
+                      <b>환불을 받아야하는 경우,</b> 카카오 채널 채팅방에
+                      환불받을 <b>계좌번호(은행명)</b>와 <b>이름</b>을 메시지로
+                      남겨주세요.
+                    </p>
+                    <p>
+                      <b>추가입금을 해야하는 경우,</b> 해당 금액을 동일한 계좌에
+                      입금하고 채팅방에 <b>이름</b>과 <b>"입금완료"</b> 메시지를
+                      남겨주세요. <b>확인 후 주문을 확정해드립니다.</b>
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span class="faq-question-text"
+                      >&nbsp;&nbsp;<i class="xi-lightbulb-o"></i>&nbsp;인화지는
+                      종류별로 어떤 차이가 있나요?</span
+                    >
+                    <i class="xi-caret-up-min" id="faq_arrow5"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>
+                      <b>A.</b> 후지필름, 코닥 그리고 DNP는
+                      <b>색감과 명암에서 많은 차이를 보입니다.</b> 코닥과 DNP의
+                      경우, 색감이 연하고 명암이 부드럽습니다. 반대로
+                      <b>후지필름은 색감이 진하고 명암이 선명합니다.</b>
+                    </p>
+                    <p>
+                      캐릭터나 인물, 그림 위주의 굿즈사진에는 주로 후지필름이
+                      사용되기 때문에
+                      <b
+                        >프린티는 후지필름 기기에 찾아가 사진을 출력하고
+                        있습니다.</b
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button
+                id="kakao_btn"
+                onclick="window.open('http://pf.kakao.com/_CeJZG/chat')"
+              >
+                카카오톡 채널 바로가기
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="content2" class="tab-content tab2">
+          <div id="main_content2">
+            <div class="discription">
+              <div id="title1">안내</div>
+              <div class="status">
+                <div class="bold">상품 출고일</div>
+                <div class="medium">
+                  현재 배송을 신청하시면 다음 일자에 상품이 출고됩니다.
+                </div>
+                <div class="status_box2">
+                  <button class="boxes" id="con2_box1" disabled>
+                    <i class="xi-caret-up-min" id="con2_arrow1"></i>&nbsp;&nbsp;
+                    오늘
+                  </button>
+                  <button class="boxes" id="con2_box2" disabled>
+                    <i class="xi-caret-up-min" id="con2_arrow2"></i>&nbsp;&nbsp;
+                    내일
+                  </button>
+                  <button class="boxes" id="con2_box3" disabled>
+                    <i class="xi-caret-up-min" id="con2_arrow3"></i>&nbsp;&nbsp;
+                    다음 영업일 (토, 일 제외)
+                  </button>
+                </div>
+              </div>
+              <ol class="smallnum_list">
+                <li class="smallnum">
+                  <p>
+                    ① 배송비는 <span class="red">3,500원</span>이며, 제주 및
+                    도서 산간 지역은 추가비용이 발생할 수 있습니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 보관내역의 누적 결제금액이 2만원 이상이면, 배송비는
+                      2,000원입니다.
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 보관내역의 누적 결제금액이 4만원 이상인 경우, 배송지에
+                      관계없이 무료로 배송해드립니다.
+                    </span>
+                  </p>
+                </li>
+
+                <li class="smallnum">
+                  <p>
+                    ② 누적 결제금액, 보관장수, 보관일, 배송비는
+                    <span class="red">보관내역조회</span>로 확인할 수 있습니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ③ 출고 후,
+                    <span class="red">출고완료 알림톡(또는 이메일)</span>과
+                    <span class="red">송장번호</span>를 발송해드립니다.
+                  </p>
+                </li>
+              </ol>
+            </div>
+            <div class="notification">
+              <div id="title2">주의사항</div>
+              <ol class="smallnum_list">
+                <li class="smallnum">
+                  <p>
+                    ① 현재 접수된 주문이 있다면,
+                    <span class="red"
+                      >반드시 출력완료 알림톡(또는 이메일)을 확인한 뒤에 배송을
+                      신청해주세요.</span
+                    >
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 추가입금 및 환불액이 발생할 경우, 보관장수와 누적
+                      결제금액이 변동될 수 있기 때문입니다.
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ②
+                    <span class="red"
+                      >전화번호(또는 이메일), 이름, 받는 분 정보</span
+                    >를 정확히 입력해주세요.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>③ 상황에 따라 출고가 지연될 수 있습니다.</p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ④ 출고 후에도 배송이 지연되면, 반드시
+                    <span class="red">택배사(CJ대한통운)</span>에 문의하시기
+                    바랍니다.
+                  </p>
+                </li>
+                <li class="smallnum">⑤ 반택 배송은 이용할 수 없습니다.</li>
+              </ol>
+            </div>
+            <div class="bottom">
+              <button id="delivery_application" onclick="redirectToNext2()">
+                배송 신청하기
+              </button>
+              <button id="check_storage" onclick="redirectToNext3()">
+                보관내역 조회하기
+              </button>
+            </div>
+          </div>
+          <div id="break_point"></div>
+          <div id="FAQ_content1">
+            <div class="FAQ">
+              <div class="FAQ_intro">
+                <div class="FAQ_title">&nbsp;&nbsp;주요 FAQ</div>
+                <div class="FAQ_subtitle">
+                  &nbsp;&nbsp;자주 묻는 질문을 확인해보세요
+                </div>
+              </div>
+              <div class="faq-container">
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span class="faq-question-text"
+                      >&nbsp;&nbsp;<i class="xi-lightbulb-o"></i>&nbsp;당일 출고
+                      기준이 어떻게 되나요?</span
+                    >
+                    <i class="xi-caret-up-min" id="faq_arrow1"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>
+                      <b>A. 평일 오전 10시까지 입금완료된 배송 신청건</b>은 당일
+                      포장하여 출고합니다. (주말, 화요일 제외)
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span class="faq-question-text"
+                      >&nbsp;&nbsp;<i class="xi-lightbulb-o"></i>&nbsp;배송비는
+                      얼마인가요?</span
+                    >
+                    <i class="xi-caret-up-min" id="faq_arrow1"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>
+                      <b>A.</b> 배송비는 <b>3,500원</b>이며, 이는 포장비가
+                      포함된 금액입니다.
+                      <b
+                        >보관내역의 누적 결제금액에 따라 배송비가 할인
+                        적용되니</b
+                      >
+                      안내사항을 잘 확인해주세요.
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span class="faq-question-text"
+                      >&nbsp;&nbsp;<i class="xi-lightbulb-o"></i>&nbsp;해외
+                      배송도 가능한가요?</span
+                    >
+                    <i class="xi-caret-up-min" id="faq_arrow2"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>
+                      <b>A. 현재 해외배송은 불가능합니다.</b> 해외에서 출력
+                      대행을 신청하시는 고객님은
+                      <b>배송 가능한 국내 주소를 사전에 확보해주세요.</b> (예.
+                      지인, 배송대행지 등)
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span class="faq-question-text"
+                      >&nbsp;&nbsp;<i class="xi-lightbulb-o"></i>&nbsp;받은
+                      사진에 하자가 있어요.</span
+                    >
+                    <i class="xi-caret-up-min" id="faq_arrow3"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>
+                      <b>A.</b> 사진의 하자를 발견한 경우,
+                      <b
+                        >카카오톡 채널 상담원 채팅으로 사진과 메시지를
+                        보내주세요.</b
+                      >
+                    </p>
+                    <p>
+                      <b>얼룩, 찢김, 구겨짐 등</b>은 책임 소재를 찾기 어려워
+                      <b
+                        >사진 앞면의 심각한 훼손에 대해서만 반액 환불을
+                        도와드립니다.</b
+                      >
+                      (뒷면, 가장자리 제외)
+                    </p>
+                    <p>
+                      <b
+                        >여백 및 짤림 현상 또한 정도가 심한 경우에 대해 반액
+                        환불을 도와드립니다.</b
+                      >
+                      방문하는 매장의 출력기기는 사장님께서 주기적으로 여백을
+                      조정하기 때문에 크게 걱정하지 않으셔도 됩니다.
+                    </p>
+                  </div>
+                </div>
+                <div class="faq-item">
+                  <div class="faq-question">
+                    <span class="faq-question-text"
+                      >&nbsp;&nbsp;<i class="xi-lightbulb-o"></i>&nbsp;받은
+                      사진이 일부 누락됐어요.</span
+                    >
+                    <i class="xi-caret-up-min" id="faq_arrow4"></i>
+                  </div>
+                  <div class="faq-answer">
+                    <p>
+                      <b>A.</b> 사진이 일부 누락된 경우,
+                      <b>카카오톡 채널 상담원 채팅으로 메시지를 보내주세요.</b>
+                      확인 후 누락된 사진을 재포장하여 <b>무료</b>로
+                      배송해드립니다.
+                    </p>
+                    <p>
+                      만약 사진이 분실된 경우라면,
+                      <b>분실된 사진에 대해 전액 환불해드립니다.</b> (수고비
+                      제외)
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button
+                id="kakao_btn"
+                onclick="window.open('http://pf.kakao.com/_CeJZG/chat')"
+              >
+                카카오톡 채널 바로가기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function refreshPage() {
+        location.reload();
+      }
+
+      function redirectToNext() {
+        window.open(
+          // "https://script.google.com/a/macros/printtie.com/s/AKfycbzpK8w2A275NQ8uqW1x4MJ8qLiuwVfTHWd90COuN3_LShVdoF5duYk6Dx_GKvOTMAVR/exec"
+          "https://script.google.com/macros/s/AKfycbwPS2u3ot5cvHEcINBFX6LVNZCaNQmdxXnMca6X0Dn2VpQ8UEJ-rX3FqonPtWUL7ILBHA/exec"
+        );
+      }
+      function redirectToNext2() {
+        window.open(
+          // "https://script.google.com/a/macros/printtie.com/s/AKfycbyVzSkCq8kViNttOgkJ89Wlt3BVlUKhfWgiGC6MXiH5hKgqIgX5BdAmZwaNZmIgAuGC/exec"
+          "https://script.google.com/macros/s/AKfycbwm0hAdn9o4kME7R3HOHgQkwi2YQ1yZyKQrkJOe01_dTF61OaJwdOrnQtr_TWWnjlnm/exec"
+        );
+      }
+      function redirectToNext3() {
+        window.open(
+          // "https://script.google.com/a/macros/printtie.com/s/AKfycbyuiRi_W_FOAx0Piey_AeebKe9vsTr1WeW28W8pHBuXFbj-au0PmW8PlS01NjPQFxsgcA/exec"
+          "https://script.google.com/macros/s/AKfycbwX016M7u0nlURIyA3QAsTXO_ArMT_8CJOUBCsCxUQpuPQIiagZqaRNpq1uOnHSAQqrdw/exec"
+        );
+      }
+    </script>
+    <script src="new.js"></script>
+  </body>
+</html>

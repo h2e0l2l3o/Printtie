@@ -1,0 +1,2649 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Printtie_Inquiry</title>
+    <!-- 파비콘 -->
+    <link rel="icon" href="https://ifh.cc/g/NC6LO0.png" />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"
+    />
+    <style>
+      @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
+      body {
+        font-family: "NanumSquare", sans-serif;
+        display: flex;
+        flex-direction: column;
+        /* -webkit-text-size-adjust: 100%; */
+        background-color: #f6f6f6;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      button {
+        font-family: "NanumSquare", sans-serif;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      .container {
+        /* margin: 10%; */
+        padding-bottom: 80px;
+        margin-top: 80px;
+        padding-top: 15px;
+        top: 0;
+        /* max-width: 90vw; */
+        width: 500px;
+        background-color: white;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .top {
+        position: fixed;
+        display: flex;
+        /* max-width: 90vw; */
+        width: 500px;
+        margin: auto;
+        top: 0;
+        flex-direction: column;
+        background-color: white;
+        height: 90px;
+        line-height: 100%;
+        z-index: 8;
+      }
+
+      h1 .red {
+        color: rgba(231, 64, 74, 1);
+      }
+
+      .top .tab_bar {
+        display: inline-flex;
+        position: relative;
+        margin-left: 1.6rem;
+        font-size: 115%;
+        font-weight: 600;
+        white-space: nowrap;
+        /* background-color: aqua; */
+        width: 90%;
+        height: 30px;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: nowrap;
+        align-content: center;
+        margin-top: 1.5rem;
+      }
+
+      .top .tab_bar input {
+        display: none;
+      }
+
+      .top .tab_bar label {
+        font-size: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        border-bottom: 2px solid #e6e6e6;
+        display: inline-flex;
+        width: 50%;
+        font-weight: 400;
+        justify-content: center;
+        color: #aaaaaa;
+      }
+
+      /* 클릭할 수 있다는 것을 사용자에 알려주기 위해 마우스 포인터 모양 적용*/
+      .top .tab_bar label:hover {
+        cursor: pointer;
+      }
+
+      /* 어떤 탭이 선택되었는지 색으로 알려줌 */
+      .top .tab_bar input:checked + label {
+        color: #e7404a;
+        border-bottom: 2px solid #e7404a;
+        font-weight: 700;
+      }
+
+      .main {
+        margin-top: 1px;
+        width: 100%;
+        /* background-color: #d8236a; */
+      }
+
+      #content1 {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        /* background-color: #e7404a; */
+      }
+
+      .person_content1 {
+        display: inline-block;
+        /* background-color: yellow; */
+        width: 90%;
+        text-align: left;
+      }
+
+      .receiver_content1 {
+        display: inline-block;
+        /* background-color: yellow; */
+        width: 90%;
+        text-align: left;
+      }
+
+      #title1,
+      #title2 {
+        font-size: 110%;
+        font-weight: 600;
+        display: inline-block;
+        background-color: #e6e6e6;
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: normal;
+        margin-bottom: 1rem;
+      }
+
+      #title2 {
+        margin-top: 2rem;
+      }
+      .smallnum_list {
+        /* background-color: aqua; */
+        display: inline-flex;
+        flex-direction: column;
+        list-style: none;
+        font-size: 95%;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        margin-bottom: 1rem;
+        margin-top: 0.3rem;
+      }
+
+      .smallnum_list .smallnum {
+        /* background-color: antiquewhite; */
+        display: inline-flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        line-height: 2.5rem;
+      }
+
+      .red {
+        color: #e7404a;
+      }
+
+      .smallnum_list p {
+        margin-top: -0.1rem;
+        margin-bottom: -0.1rem;
+      }
+
+      .grey_letter {
+        color: #7f7f7f;
+        font-size: 95%;
+      }
+
+      #break_point {
+        background-color: #f6f6f6;
+        width: 100%;
+        height: 1rem;
+      }
+
+      .receiver_content1 {
+        display: inline-block;
+        /* background-color: yellow; */
+        width: 90%;
+        text-align: left;
+      }
+
+      #content2 {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        /* background-color: #e7404a; */
+      }
+
+      .main_content2 {
+        display: inline-block;
+        /* background-color: yellow; */
+        width: 90%;
+        text-align: left;
+      }
+
+      #example_img {
+        box-sizing: border-box;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+
+      #content3 {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        /* background-color: #e7404a; */
+      }
+
+      .main_content3 {
+        display: inline-block;
+        /* background-color: yellow; */
+        width: 90%;
+        text-align: left;
+      }
+
+      #price_img {
+        box-sizing: border-box;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      /*위에는 모두 top, 작성방법, 가격표 부분*/
+
+      /*여기서부터 신청서 작성 코드*/
+      .sender_info {
+        display: inline-flex;
+        flex-direction: column;
+        /* background-color: antiquewhite; */
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .receiver_info {
+        display: inline-flex;
+        flex-direction: column;
+        /* background-color: antiquewhite; */
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .input-container {
+        display: inline-flex;
+        flex-direction: column;
+        /* background-color: aliceblue; */
+        width: 100%;
+        margin-bottom: 2rem;
+        /* margin-top: 3%;
+        margin-left: 3%; */
+      }
+
+      .input-container3 {
+        display: inline-flex;
+        flex-direction: column;
+        /* background-color: aliceblue; */
+        width: 100%;
+        margin-bottom: 0.5rem;
+        /* margin-top: 3%;
+        margin-left: 3%; */
+      }
+
+      .bottom_area {
+        display: inline-flex;
+        flex-direction: column;
+        /* background-color: aliceblue; */
+        width: 100%;
+        margin-bottom: 2rem;
+        justify-content: center;
+        text-align: center;
+        /* margin-top: 0%; */
+        /* margin-top: 3%;
+        margin-left: 3%; */
+      }
+
+      .bold {
+        font-size: 100%;
+        font-weight: 600;
+        text-indent: 0.5rem;
+        line-height: 2rem;
+        display: inline-block;
+        width: max-content;
+      }
+
+      .star {
+        color: #e7404a;
+        /* background-color: #aaaaaa; */
+        display: inline-block;
+        text-indent: 0.1rem;
+      }
+
+      .medium {
+        font-size: 90%;
+        font-weight: 400;
+        text-indent: 0.5rem;
+        color: #7f7f7f;
+        margin-bottom: 0.5rem;
+      }
+
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+        font-family: "NanumSquare", sans-serif;
+      }
+      input[type="radio"] {
+        display: none;
+      }
+
+      .input-container2 {
+        display: inline-flex;
+        /* background-color: aqua; */
+        flex-direction: column;
+      }
+
+      .input-container2 .option {
+        /* background-color: antiquewhite; */
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        text-align: left;
+        line-height: normal;
+        font-size: 98%;
+        padding-left: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 100%;
+        margin-bottom: 0.7rem;
+        color: #aaaaaa;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      #noti1,
+      #picture2 {
+        border-color: #e7404a;
+        background-color: rgba(253, 236, 237, 1);
+        color: #e7404a;
+        font-weight: bold;
+      }
+
+      .input-container2 .option .xi-radiobox-blank {
+        color: #e6e6e6;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+        margin-right: 0.2rem;
+      }
+
+      .input-container2 .option .xi-radiobox-checked {
+        color: #e7404a;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+        margin-right: 0.2rem;
+      }
+
+      #type1 {
+        color: #e7404a;
+        border-color: #e7404a;
+        font-weight: bold;
+        background-color: rgba(253, 236, 237, 1);
+      }
+
+      #type2,
+      #type3,
+      #type4 {
+        opacity: 0.6;
+        pointer-events: none;
+        background-color: #f6f6f6;
+        color: #aaaaaa;
+        cursor: default;
+        font-weight: 400;
+        border-color: #e6e6e6;
+      }
+
+      #name {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        text-align: left;
+        line-height: normal;
+        font-size: 98%;
+        padding-left: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 100%;
+        margin-bottom: 0.7rem;
+        color: black;
+        cursor: pointer;
+      }
+
+      #name::placeholder {
+        color: #aaaaaa;
+        font-size: 98%;
+        font-family: "NanumSquare", sans-serif;
+        font-weight: 400;
+      }
+
+      #name:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      #name_tab2 {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        text-align: left;
+        line-height: normal;
+        font-size: 98%;
+        padding-left: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 100%;
+        margin-bottom: 0.7rem;
+        color: black;
+        cursor: pointer;
+      }
+
+      #name_tab2::placeholder {
+        color: #aaaaaa;
+        font-size: 98%;
+        font-family: "NanumSquare", sans-serif;
+        font-weight: 400;
+      }
+
+      #name_tab2:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      .warningMessage {
+        font-size: 90%;
+        font-weight: 400;
+        text-indent: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: #e7404a;
+      }
+
+      .warningMessage_printcode1 {
+        font-size: 90%;
+        font-weight: 400;
+        text-indent: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: #e7404a;
+      }
+
+      .warningMessage_printcode2 {
+        font-size: 90%;
+        font-weight: 400;
+        text-indent: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: #e7404a;
+      }
+
+      .phonefield {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: -0.5rem;
+      }
+
+      .OrderNumfield {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: -0.5rem;
+      }
+
+      #phone1,
+      #phone2,
+      #phone3 {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        line-height: normal;
+        font-size: 98%;
+        text-align: center;
+        color: black;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      #Order_num2,
+      #Order_num3 {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        line-height: normal;
+        font-size: 98%;
+        text-align: center;
+        color: black;
+        width: 60%;
+        cursor: pointer;
+      }
+
+      #Order_num1 {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        line-height: normal;
+        font-size: 98%;
+        text-align: center;
+        color: black;
+        width: 40%;
+        cursor: default;
+      }
+
+      #phone1 {
+        cursor: default;
+      }
+
+      #phone1:focus {
+        outline: none;
+      }
+
+      #Order_num1:focus {
+        outline: none;
+      }
+
+      #Order_num2:focus,
+      #Order_num3:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      #phone2:focus,
+      #phone3:focus,
+      #phone1_receiver:focus,
+      #phone2_receiver:focus,
+      #phone3_receiver:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      #email {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        text-align: left;
+        line-height: normal;
+        font-size: 98%;
+        padding-left: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 100%;
+        margin-bottom: 0.7rem;
+        color: black;
+        cursor: pointer;
+      }
+
+      #email::placeholder {
+        color: #aaaaaa;
+        font-size: 98%;
+        font-family: "NanumSquare", sans-serif;
+        font-weight: 400;
+      }
+
+      #email:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      .disabled-div {
+        opacity: 0.6;
+        pointer-events: none;
+        background-color: #f6f6f6;
+        color: #aaaaaa;
+        cursor: default;
+      }
+
+      .bottom {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        width: 500px;
+        height: 70px;
+        background-color: white;
+        flex-direction: column;
+        padding-top: 1rem;
+        /* box-shadow: 5px 5px 20px; */
+      }
+
+      .bottom_bottomline {
+        /* background-color: aqua; */
+        margin-bottom: 0;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+      }
+
+      #final_confirm_btn:disabled {
+        background: #f6f6f6;
+        display: inline-flex;
+        width: 100%;
+        font-family: "NanumSquare", sans-serif;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 110%;
+        font-weight: 600;
+        color: #aaaaaa;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 5px;
+        border: none;
+        justify-content: center;
+        margin-bottom: 0.7rem;
+      }
+
+      #final_confirm_btn:enabled {
+        background: #e7404a;
+        display: inline-flex;
+        width: 100%;
+        font-family: "NanumSquare", sans-serif;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 110%;
+        font-weight: 600;
+        color: white;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 5px;
+        border: none;
+        justify-content: center;
+        margin-bottom: 0.7rem;
+        cursor: pointer;
+      }
+
+      #pop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 30;
+        display: none;
+      }
+
+      #pop .message {
+        width: 440px;
+        height: 220px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        right: 50%;
+        border: none;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .message .pop_content {
+        width: 100%;
+        height: 100%;
+        /* background-color: #7f7f7f; */
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: space-between;
+      }
+
+      .notification_area {
+        display: inline-block;
+        /* background-color: aqua; */
+        margin-top: 3rem;
+        box-sizing: border-box;
+        width: 100%;
+        line-height: 2rem;
+      }
+
+      .button_area {
+        background-color: #f6f6f6;
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-between;
+        border-radius: 5px;
+      }
+
+      #cancel_btn,
+      #checked_btn {
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+        height: 65px;
+        margin-bottom: 0;
+
+        cursor: pointer;
+        font-size: 98%;
+      }
+
+      #cancel_btn {
+        border-top: 2px solid #e6e6e6;
+        border-right: 2px solid #e6e6e6;
+        border-bottom-left-radius: 5px;
+      }
+
+      #checked_btn {
+        font-weight: 600;
+        color: #e7404a;
+        border-top: 2px solid #e6e6e6;
+        border-bottom-right-radius: 5px;
+      }
+
+      #pop2 {
+        position: fixed;
+        top: 0;
+        height: 100%;
+        width: 500px;
+        background-color: white;
+        /* display: inline-flex; */
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 50;
+        display: none;
+        /* display: inline-flex; */
+      }
+
+      .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        overflow: hidden;
+        display: inline-block;
+        margin-bottom: 2rem;
+      }
+
+      .bold2 {
+        font-size: 100%;
+        font-weight: 600;
+        line-height: 2.5rem;
+        display: inline-block;
+        width: max-content;
+      }
+      .medium2 {
+        font-size: 90%;
+        font-weight: 400;
+        color: #7f7f7f;
+        line-height: 1.5rem;
+      }
+
+      /* 배송비 부분 조회 */
+      .orderCheckfield {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      #cost_storage,
+      #pages_storage,
+      #days_storage,
+      #deliveryFee_storage {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        line-height: normal;
+        font-size: 98%;
+        text-align: right;
+        padding-right: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 100%;
+        color: black;
+        cursor: default;
+      }
+
+      #cost_storage:focus,
+      #pages_storage:focus,
+      #days_storage:focus,
+      #deliveryFee_storage:focus {
+        outline: none;
+      }
+      #checkingorder:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      #checkedOrder:disabled {
+        background: #f6f6f6;
+        display: inline-flex;
+        width: 100%;
+        font-family: "NanumSquare", sans-serif;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 110%;
+        font-weight: 600;
+        color: #aaaaaa;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 5px;
+        border: none;
+        justify-content: center;
+        margin-bottom: 0.7rem;
+      }
+
+      #checkedOrder:enabled {
+        background: #e7404a;
+        display: inline-flex;
+        width: 100%;
+        font-family: "NanumSquare", sans-serif;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 110%;
+        font-weight: 600;
+        color: white;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 5px;
+        border: none;
+        justify-content: center;
+        margin-bottom: 0.7rem;
+        cursor: pointer;
+      }
+
+      #checkedOrder2:disabled {
+        background: #f6f6f6;
+        display: inline-flex;
+        width: 100%;
+        font-family: "NanumSquare", sans-serif;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 110%;
+        font-weight: 600;
+        color: #aaaaaa;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 5px;
+        border: none;
+        justify-content: center;
+        margin-bottom: 0.7rem;
+      }
+
+      #checkedOrder2:enabled {
+        background: #e7404a;
+        display: inline-flex;
+        width: 100%;
+        font-family: "NanumSquare", sans-serif;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 110%;
+        font-weight: 600;
+        color: white;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 5px;
+        border: none;
+        justify-content: center;
+        margin-bottom: 0.7rem;
+        cursor: pointer;
+      }
+
+      .disabled-div {
+        opacity: 0.6;
+        pointer-events: none;
+        background-color: #f6f6f6;
+        color: #aaaaaa;
+        cursor: default;
+      }
+
+      .boxes {
+        border: 1px solid #e7404a;
+        border-radius: 5px;
+        background-color: rgba(253, 236, 237, 1);
+        box-sizing: border-box;
+        font-weight: 600;
+        text-align: left;
+        line-height: normal;
+        font-size: 98%;
+        margin-left: 0.1rem;
+        padding-left: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 28rem;
+        margin-bottom: 0rem;
+        color: #e7404a;
+      }
+
+      #arrow1 {
+        transform: rotate(90deg);
+      }
+      #arrow2,
+      #arrow3 {
+        /* background-color: #7f7f7f; */
+        /* margin-top: 2rem; */
+        align-self: center;
+        font-size: large;
+        margin-top: -1rem;
+        color: #aaaaaa;
+      }
+
+      .border {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        text-align: left;
+        line-height: normal;
+        font-size: 98%;
+        padding-left: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 100%;
+        margin-bottom: 0.7rem;
+        color: black;
+        cursor: default;
+        pointer-events: none;
+      }
+
+      .border:focus,
+      .border-red:focus,
+      .nonBorder:focus,
+      .nonBorder-red:focus {
+        outline: none;
+      }
+
+      .border-red {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        text-align: left;
+        line-height: normal;
+        font-size: 98%;
+        padding-left: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 100%;
+        margin-bottom: 0.7rem;
+        color: #e7404a;
+        cursor: default;
+        pointer-events: none;
+      }
+
+      .nonBorder {
+        color: #7f7f7f;
+        font-size: 95%;
+        margin-top: 0.5rem;
+        margin-left: 0.5rem;
+        display: inline-flex;
+        flex-direction: row;
+      }
+
+      .nonBorder-red {
+        color: #e7404a;
+        font-size: 95%;
+        margin-left: 0.5rem;
+        display: inline-flex;
+        flex-direction: row;
+        border: none;
+      }
+
+      #warning10,
+      #warning10_tab2 {
+        text-align: left;
+      }
+
+      /* 애니메이션 설정 */
+      @keyframes moveDown {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(20px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      /* animate-arrow 클래스에 애니메이션 적용 */
+      .animate-arrow {
+        animation-name: moveDown;
+        animation-duration: 1s; /* 애니메이션 지속 시간 설정 (1초) */
+        animation-timing-function: ease; /* 애니메이션 타이밍 함수 설정 */
+      }
+
+      @media (max-width: 767px) {
+        .container {
+          padding-bottom: 0px; /* 100px / 1.35 */
+          margin-top: 59.26px; /* 80px / 1.35 */
+          padding-top: 15px; /* 15px / 1.35 */
+          width: 370px; /* 500px / 1.35 */
+        }
+
+        .top {
+          width: 370px; /* 500px / 1.35 */
+          height: 75px; /* 90px / 1.35 */
+        }
+
+        .top_line h1 {
+          margin-left: 1.11rem; /* 1.5rem / 1.35 */
+        }
+
+        .top_line .xi-refresh {
+          margin-right: 1.11rem; /* 1.5rem / 1.35 */
+        }
+
+        .top .tab_bar {
+          margin-left: 1.19rem; /* 1.6rem / 1.35 */
+          height: 22.22px; /* 30px / 1.35 */
+          margin-top: 1.11rem; /*1.5rem / 1.35*/
+        }
+
+        .top .tab_bar label {
+          font-size: 85%;
+          width: 50%;
+          padding-bottom: 1.7rem;
+        }
+        .main {
+          margin-top: 0.74px; /* 1px / 1.35 */
+        }
+
+        #title1,
+        #title2 {
+          padding-top: 14.81px; /* 20px / 1.35 */
+          padding-bottom: 14.81px; /* 20px / 1.35 */
+          margin-bottom: 0.7rem; /* 1rem / 1.35 */
+        }
+
+        #title2 {
+          margin-top: 2rem; /* 2rem / 1.35 */
+        }
+
+        .smallnum_list {
+          padding-left: 0.37rem; /* 0.5rem / 1.35 */
+          padding-right: 0.37rem; /* 0.5rem / 1.35 */
+          margin-bottom: 1rem; /* 1rem / 1.35 */
+          margin-top: 0.3rem; /* 0.3rem / 1.35 */
+        }
+
+        .smallnum_list p {
+          margin-top: -0.1rem; /* -0.1rem / 1.35 */
+          margin-bottom: -0.1rem; /* -0.1rem / 1.35 */
+        }
+
+        #break_point {
+          height: 0.74rem; /* 1rem / 1.35 */
+        }
+
+        #example_img {
+          margin-bottom: 0.5rem; /* 0.5rem / 1.35 */
+        }
+
+        #price_img {
+          margin-bottom: 0.5rem; /* 0.5rem / 1.35 */
+        }
+
+        .input-container {
+          margin-bottom: 1.48rem; /* 2rem / 1.35 */
+        }
+
+        .bold {
+          text-indent: 0.37rem; /* 0.5rem / 1.35 */
+          margin-bottom: -0.05rem;
+        }
+
+        .star {
+          text-indent: 0.07rem; /* 0.1rem / 1.35 */
+        }
+
+        .medium {
+          text-indent: 0.37rem; /* 0.5rem / 1.35 */
+          margin-bottom: 0.4rem; /* 0.5rem / 1.35 */
+        }
+
+        .input-container2 .option {
+          padding-left: 0.74rem; /* 1rem / 1.35 */
+          padding-top: 0.81rem; /* 1.1rem / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+        }
+
+        .input-container2 .option .xi-radiobox-blank {
+          margin-right: 0.15rem; /* 0.2rem / 1.35 */
+        }
+
+        .input-container2 .option .xi-radiobox-checked {
+          margin-right: 0.15rem; /* 0.2rem / 1.35 */
+        }
+
+        #name {
+          padding-left: 0.74rem; /* 1rem / 1.35 */
+          padding-top: 0.81rem; /* 1.1rem / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+        }
+
+        .warningMessage {
+          text-indent: 0.37rem; /* 0.5rem / 1.35 */
+          margin-bottom: 0.37rem; /* 0.5rem / 1.35 */
+        }
+
+        .warningMessage_printcode1 {
+          font-size: 66.67%; /* 90% / 1.35 */
+          text-indent: 0.37rem; /* 0.5rem / 1.35 */
+          margin-bottom: 0.37rem; /* 0.5rem / 1.35 */
+        }
+
+        .warningMessage_printcode2 {
+          text-indent: 0.37rem; /* 0.5rem / 1.35 */
+          margin-bottom: 0.37rem; /* 0.5rem / 1.35 */
+        }
+
+        .phonefield {
+          margin-bottom: -0.37rem; /* -0.5rem / 1.35 */
+        }
+
+        #email {
+          padding-left: 0.74rem; /* 1rem / 1.35 */
+          padding-top: 0.81rem; /* 1.1rem / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+        }
+
+        .xi-toggle-on {
+          padding-right: 0.37rem; /* 0.5rem / 1.35 */
+          transform-origin: 40% 40%; /* 40% / 1.35 */
+        }
+
+        .print_code {
+          padding-left: 0.74rem; /* 1rem / 1.35 */
+          padding-top: 0.81rem; /* 1.1rem / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+        }
+
+        .dropdown {
+          padding-top: 0.81rem; /* 1.1rem / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+          padding-left: 0.74rem; /* 1rem / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+        }
+
+        .dropdown:after {
+          right: 1.11rem; /* 1.5rem / 1.35 */
+          top: 1.3rem; /* 1.5rem / 1.35 */
+          border-width: 4px; /* 4px / 1.35 */
+        }
+
+        .active:after {
+          border-width: 4px; /* 4px / 1.35 */
+          top: 0.96rem; /* 1.3rem / 1.35 */
+        }
+
+        .dropdown-list li {
+          padding-top: 0.81rem; /* 1.1rem / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+          padding-left: 0.74rem; /* 1rem / 1.35 */
+        }
+
+        .page {
+          padding-top: 0.81rem; /* 1.1rem / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+          padding-left: 0.74rem; /* 1rem / 1.35 */
+          padding-right: 0.74rem; /* 1rem / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+        }
+
+        .counter {
+          margin-right: 0.15rem; /* 0.2rem / 1.35 */
+        }
+
+        .page_count {
+          margin: 0 0.74rem; /* 1rem / 1.35 */
+        }
+
+        .print {
+          padding-top: 0.81rem; /* 1.1rem / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+          padding-left: 0.74rem; /* 1rem / 1.35 */
+          padding-right: 0.74rem; /* 1rem / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+        }
+
+        .xi-minus-circle {
+          padding: 2.22%; /* 3% / 1.35 */
+        }
+
+        .xi-plus-circle {
+          margin-right: 0.52rem; /* 0.7rem / 1.35 */
+          padding: 2.22%; /* 3% / 1.35 */
+        }
+
+        .print_count {
+          margin: 0 0.74rem; /* 1rem / 1.35 */
+        }
+
+        .code_sumbox {
+          padding-left: 0.74rem; /* 1rem / 1.35 */
+          padding-right: 0.74rem; /* 1rem / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+          padding-top: 0.44rem; /* 0.6rem / 1.35 */
+          padding-bottom: 0.44rem; /* 0.6rem / 1.35 */
+        }
+
+        .bottom {
+          width: 370px; /* 500px / 1.35 */
+          height: 85px; /* 120px / 1.35 */
+          position: relative;
+        }
+
+        .bottom_topline {
+          margin-bottom: -0.3rem;
+          font-size: 90%;
+        }
+
+        .bottom_bottomline {
+          margin-left: 1.11rem; /* 1.5rem / 1.35 */
+          margin-right: 1.11rem; /* 1.5rem / 1.35 */
+        }
+
+        #final_confirm_btn:disabled {
+          padding-top: 0.81rem; /* 1.1rem / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+          margin-bottom: 0.7rem; /* 0.7rem / 1.35 */
+        }
+
+        #final_confirm_btn:enabled {
+          padding-top: 0.81rem; /* 1.1rem / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+          margin-bottom: 0.7rem; /* 0.7rem / 1.35 */
+        }
+
+        #pop .message {
+          width: 326.67px; /* 440px / 1.35 */
+          height: 220px; /* 220px / 1.35 */
+        }
+
+        .notification_area {
+          margin-top: 2.22rem; /* 3rem / 1.35 */
+        }
+
+        #cancel_btn,
+        #checked_btn {
+          height: 65px; /* 65px / 1.35 */
+        }
+
+        #pop2 {
+          width: 370px; /* 500px / 1.35 */
+        }
+
+        .image {
+          width: 150px; /* 150px / 1.35 */
+          height: 150px; /* 150px / 1.35 */
+          margin-bottom: 1.48rem; /* 2rem / 1.35 */
+        }
+
+        .button_area2 {
+          margin: 2.22rem; /* 3rem / 1.35 */
+        }
+
+        #gohome_btn {
+          padding-top: 0.81rem; /* 1.1rem / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+        }
+
+        #pop3 .message {
+          width: 326.67px; /* 440px / 1.35 */
+          height: 220px; /* 220px / 1.35 */
+        }
+
+        #name_receiver {
+          padding-left: 0.74rem;
+          padding-top: 0.81rem;
+          padding-bottom: 0.81rem;
+          margin-bottom: 0.52rem;
+        }
+
+        .phonefield2 {
+          margin-bottom: -0.37rem;
+        }
+
+        .bold2 {
+          font-size: 100%;
+          line-height: 2.5rem;
+        }
+        .medium2 {
+          font-size: 90%;
+          line-height: 1.5rem;
+        }
+
+        #checkingorder {
+          /* font-size: 98%; */
+          padding-right: 0.74rem; /* 1.35로 나눈 값 */
+          width: 14.07rem; /* 1.35로 나눈 값 */
+          height: 2.85rem; /* 1.35로 나눈 값 */
+          margin: 0;
+        }
+
+        /* 여기부터 수정3 */
+        .input-container3 {
+          margin-bottom: 0.5rem; /* 5.0 / 1.35 */
+        }
+
+        .bottom_area {
+          margin-bottom: 1.48rem; /* 2.0 / 1.35 */
+        }
+
+        #name_tab2 {
+          padding-left: 0.74rem; /* 1.0 / 1.35 */
+          padding-top: 0.81rem; /* 1.1 / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1 / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7 / 1.35 */
+        }
+
+        .OrderNumfield {
+          margin-bottom: -0.37rem; /* -0.5 / 1.35 */
+        }
+
+        #cost_storage,
+        #pages_storage,
+        #days_storage,
+        #deliveryFee_storage {
+          padding-right: 0.74rem; /* 1.0 / 1.35 */
+          padding-top: 0.81rem; /* 1.1 / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1 / 1.35 */
+        }
+
+        #checkedOrder:disabled {
+          padding-top: 0.81rem; /* 1.1 / 1.35 */
+          /* font-size: 110%; */
+          padding-bottom: 0.81rem; /* 1.1 / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7 / 1.35 */
+        }
+
+        #checkedOrder:enabled {
+          padding-top: 0.81rem; /* 1.1 / 1.35 */
+          /* font-size: 110%; */
+          padding-bottom: 0.81rem; /* 1.1 / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7 / 1.35 */
+        }
+
+        #checkedOrder2:disabled {
+          padding-top: 0.81rem; /* 1.1 / 1.35 */
+          /* font-size: 110%; */
+          padding-bottom: 0.81rem; /* 1.1 / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7 / 1.35 */
+        }
+
+        #checkedOrder2:enabled {
+          padding-top: 0.81rem; /* 1.1 / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1 / 1.35 */
+          /* font-size: 110%; */
+          margin-bottom: 0.52rem; /* 0.7 / 1.35 */
+        }
+
+        .boxes {
+          /* font-size: 98%; */
+          margin-left: 0.07rem; /* 0.1 / 1.35 */
+          padding-left: 0.74rem; /* 1.0 / 1.35 */
+          padding-top: 0.81rem; /* 1.1 / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1 / 1.35 */
+          width: 20.74rem; /* 28.0 / 1.35 */
+        }
+
+        #arrow2,
+        #arrow3 {
+          margin-top: -0.74rem; /* -1.0 / 1.35 */
+        }
+
+        .border {
+          /* font-size: 98%; */
+          padding-left: 0.74rem; /* 1.0 / 1.35 */
+          padding-top: 0.81rem; /* 1.1 / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1 / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7 / 1.35 */
+        }
+
+        .border-red {
+          /* font-size: 98%; */
+          padding-left: 0.74rem; /* 1.0 / 1.35 */
+          padding-top: 0.81rem; /* 1.1 / 1.35 */
+          padding-bottom: 0.81rem; /* 1.1 / 1.35 */
+          margin-bottom: 0.52rem; /* 0.7 / 1.35 */
+        }
+
+        .nonBorder {
+          /* font-size: 95%; */
+          margin-top: 0.37rem; /* 0.5 / 1.35 */
+          margin-left: 0.37rem; /* 0.5 / 1.35 */
+        }
+
+        .nonBorder-red {
+          /* font-size: 95%; */
+          margin-left: 0.37rem; /* 0.5 / 1.35 */
+        }
+
+        /* 애니메이션 설정 */
+        @keyframes moveDown {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(14.81px); /* 20.0 / 1.35 */
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <br />
+        <div class="tab_bar">
+          <input type="radio" name="tabs" id="tab1" checked />
+          <label for="tab1" id="label1">보관내역조회</label>
+          <input type="radio" name="tabs" id="tab2" />
+          <label for="tab2" id="label2">주문내역조회</label>
+        </div>
+      </div>
+      <div class="main">
+        <div id="content1" class="tab-content tab1">
+          <div class="person_content1">
+            <div class="sender_info">
+              <div id="title1">주문자 정보</div>
+              <div class="input-container">
+                <div class="bold">
+                  주문방법
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">
+                  대행 신청 시 사용했던 주문방법을 선택하세요.
+                </div>
+                <div class="input-container2">
+                  <label for="kakao_noti" class="option kakao_noti" id="noti1">
+                    <input
+                      type="radio"
+                      name="select1"
+                      id="kakao_noti"
+                      value="전화번호(카카오 알림톡)"
+                      onclick="checkOnlyOne(this)"
+                      checked
+                    />
+                    <i
+                      class="xi-radiobox-blank"
+                      id="nokakao"
+                      style="display: none"
+                    ></i>
+                    <i class="xi-radiobox-checked" id="yeskakao"></i>
+                    <span>전화번호(카카오 알림톡)</span>
+                  </label>
+                  <label for="email_noti" class="option email_noti" id="noti2">
+                    <input
+                      type="radio"
+                      name="select1"
+                      id="email_noti"
+                      value="이메일"
+                      onclick="checkOnlyOne(this)"
+                    />
+                    <i class="xi-radiobox-blank" id="noemail"></i>
+                    <i
+                      class="xi-radiobox-checked"
+                      id="yesemail"
+                      style="display: none"
+                    ></i>
+                    <span>이메일</span>
+                  </label>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">
+                  이름
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">
+                  전화번호(또는 이메일)과 함께 ID 식별에 사용됩니다.
+                </div>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="이름을 입력하세요."
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='이름을 입력하세요.'"
+                />
+                <div class="warningMessage" id="warning1" style="display: none">
+                  2글자 이상 입력하세요.
+                </div>
+              </div>
+              <div class="input-container" id="showphone">
+                <div class="bold">
+                  전화번호
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">이름과 함께 ID 식별에 사용됩니다.</div>
+                <div class="phonefield">
+                  <input type="text" id="phone1" value="010" readonly />
+                  <p>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</p>
+                  <input
+                    type="number"
+                    id="phone2"
+                    oninput="handleOnInput(this,4)"
+                    min="0"
+                    max="9999"
+                    onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  />
+                  <p>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</p>
+                  <input
+                    type="number"
+                    id="phone3"
+                    oninput="handleOnInput(this,4)"
+                    min="0"
+                    max="9999"
+                    onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  />
+                </div>
+                <br />
+                <div class="warningMessage" id="warning2" style="display: none">
+                  올바른 전화번호를 입력해주세요.
+                </div>
+              </div>
+              <div class="input-container" id="showemail" style="display: none">
+                <div class="bold">
+                  이메일
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">이름과 함께 ID 식별에 사용됩니다.</div>
+                <input
+                  type="text"
+                  id="email"
+                  placeholder="이메일(소문자)을 입력하세요."
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='이메일(소문자)을 입력하세요.'"
+                />
+                <div class="warningMessage" id="warning3" style="display: none">
+                  올바른 이메일을 입력하세요.
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">
+                  유형
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">
+                  보관내역을 조회할 서비스 유형을 선택하세요.
+                </div>
+                <div class="input-container2">
+                  <label
+                    for="printingbox"
+                    class="option printingbox"
+                    id="type1"
+                  >
+                    <input
+                      type="radio"
+                      name="type"
+                      id="printingbox"
+                      value="프린팅박스"
+                      onclick="checkOnlyOne(this)"
+                      checked
+                      disabled
+                    />
+                    <i
+                      class="xi-radiobox-blank"
+                      id="noPb"
+                      style="display: none"
+                    ></i>
+                    <i class="xi-radiobox-checked" id="yesPb"></i>
+                    <span>프린팅박스</span>
+                  </label>
+                  <label for="polapola" class="option polapola" id="type2">
+                    <input
+                      type="radio"
+                      name="type"
+                      id="polapola"
+                      value="폴라폴라(서비스 준비중)"
+                      onclick="checkOnlyOne(this)"
+                      disabled
+                    />
+                    <i class="xi-radiobox-blank" id="noPp"></i>
+                    <i
+                      class="xi-radiobox-checked"
+                      id="yesPp"
+                      style="display: none"
+                    ></i>
+                    <span>폴라폴라 (서비스 준비중)</span>
+                  </label>
+                  <label for="netprint" class="option netprint" id="type3">
+                    <input
+                      type="radio"
+                      name="type"
+                      id="netprint"
+                      value="넷프린트 (미정)"
+                      onclick="checkOnlyOne(this)"
+                      disabled
+                    />
+                    <i class="xi-radiobox-blank" id="noNp"></i>
+                    <i
+                      class="xi-radiobox-checked"
+                      id="yesNp"
+                      style="display: none"
+                    ></i>
+                    <span>넷프린트 (미정)</span>
+                  </label>
+                  <label for="ibon" class="option ibon" id="type4">
+                    <input
+                      type="radio"
+                      name="type"
+                      id="ibon"
+                      value="아이본 (미정)"
+                      onclick="checkOnlyOne(this)"
+                      disabled
+                    />
+                    <i class="xi-radiobox-blank" id="noIb"></i>
+                    <i
+                      class="xi-radiobox-checked"
+                      id="yesIb"
+                      style="display: none"
+                    ></i>
+                    <span>아이본 (미정)</span>
+                  </label>
+                  <div class="bottom_area">
+                    <button id="checkedOrder" onclick="getData()" disabled>
+                      조회하기
+                    </button>
+                    <div
+                      class="warningMessage"
+                      id="warning10"
+                      style="display: none"
+                    >
+                      일치하는 보관내역을 찾을 수 없습니다.
+                    </div>
+                  </div>
+                  <i class="xi-caret-down-min" id="arrow2"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="break_point"></div>
+          <div class="receiver_content1">
+            <div class="receiver_info">
+              <div id="title2">보관내역</div>
+              <div class="input-container">
+                <div class="bold">누적 결제금액</div>
+                <div class="medium">
+                  수고비와 인증사진이 모두 포함된 금액입니다.
+                </div>
+                <div class="orderCheckfield">
+                  <input type="text" id="cost_storage" readonly />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">보관장수</div>
+                <div class="medium">보관 중인 사진의 총 개수를 표시합니다.</div>
+                <div class="orderCheckfield">
+                  <input type="text" id="pages_storage" readonly />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">보관일</div>
+                <div class="medium">
+                  최초 주문일로부터 오늘까지의 보관일을 표시합니다.
+                </div>
+                <div class="orderCheckfield">
+                  <input type="text" id="days_storage" readonly />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">배송비</div>
+                <div class="medium">
+                  누적 결제금액에 따른 배송비를 표시합니다.
+                </div>
+                <div class="orderCheckfield">
+                  <input type="text" id="deliveryFee_storage" readonly />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="content2" class="tab-content tab2">
+          <div class="person_content1">
+            <div class="sender_info">
+              <div id="title1">주문자 정보</div>
+              <div class="input-container">
+                <div class="bold">
+                  주문번호
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">
+                  알림톡(또는 이메일)에서 주문번호를 확인해주세요.
+                </div>
+                <div class="OrderNumfield">
+                  <input type="text" id="Order_num1" value="23" readonly />
+                  <p>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</p>
+                  <input
+                    type="number"
+                    id="Order_num2"
+                    oninput="handleOnInput(this,4)"
+                    min="0"
+                    max="9999"
+                    onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  />
+                  <p>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</p>
+                  <input
+                    type="number"
+                    id="Order_num3"
+                    oninput="handleOnInput(this,4)"
+                    min="0"
+                    max="9999"
+                    onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  />
+                </div>
+                <br />
+                <div
+                  class="warningMessage"
+                  id="warning2_tab2"
+                  style="display: none"
+                >
+                  올바른 주문번호를 입력해주세요.
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">
+                  이름
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">주문 시 사용했던 이름을 입력해주세요.</div>
+                <input
+                  type="text"
+                  id="name_tab2"
+                  placeholder="이름을 입력하세요."
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='이름을 입력하세요.'"
+                />
+                <div
+                  class="warningMessage"
+                  id="warning1_tab2"
+                  style="display: none"
+                >
+                  2글자 이상 입력하세요.
+                </div>
+                <div class="bottom_area">
+                  <button id="checkedOrder2" onclick="getData2()" disabled>
+                    조회하기
+                  </button>
+                  <div
+                    class="warningMessage"
+                    id="warning10_tab2"
+                    style="display: none"
+                  >
+                    일치하는 주문내역을 찾을 수 없습니다.
+                  </div>
+                </div>
+                <i class="xi-caret-down-min" id="arrow3"></i>
+              </div>
+            </div>
+          </div>
+          <div id="break_point"></div>
+          <div class="receiver_content1">
+            <div class="receiver_info">
+              <div class="input-container3">
+                <div id="title2">주문내역</div>
+                <div class="bold">대행코드</div>
+                <div class="medium">
+                  주문내역은 다음과 같은 형식으로 표시됩니다.
+                </div>
+                <button class="boxes" id="box1" disabled>
+                  <i class="xi-caret-up-min" id="arrow1"></i>&nbsp;&nbsp;
+                  인쇄코드-일련번호-페이지수-출력횟수
+                </button>
+              </div>
+              <ol class="smallnum_list">
+                <li class="smallnum">
+                  <p>
+                    ① 일련번호는 <span class="red">상품명(사이즈)</span>를
+                    나타냅니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 일반사진, 2분할사진, 4분할사진 (4x6) = 1
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 일반사진, 2분할사진, 4분할사진 (6x8) = 2
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 증명사진, 반명함사진, 여권사진 (4x6) = 3
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 증명사진, 반명함사진, 여권사진 (6x8) = 4
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ② 사용할 수 없거나, 추가입금액이 10,000원 이상 발생한 코드는
+                    <span class="red">자동으로 취소됩니다.</span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 해당 코드는 코드오류로 표시됩니다.
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ③ 입력하신 대행코드와 변경된 내용이
+                    <span class="red">순서대로</span> 표시됩니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter"
+                      >* 정상 출력된 코드는 변경된 내용이 표시되지
+                      않습니다.</span
+                    >
+                  </p>
+                </li>
+              </ol>
+              <br />
+              <br />
+              <div class="input-container">
+                <div class="bold">최종금액 및 개수</div>
+                <div class="OrderRecordfield">
+                  <div class="nonBorder">
+                    <div id="total_cost">-</div>
+                    원&nbsp;(
+                    <div id="total_pages">-</div>
+                    장)
+                  </div>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">변동된 금액</div>
+                <div class="OrderRecordfield">
+                  <div class="nonBorder" id="changed_price">-</div>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">코드 1</div>
+                <div class="medium">인쇄코드-일련번호-페이지수-출력횟수</div>
+                <div class="showCodesfield">
+                  <input type="text" id="code1" class="border codes" readonly />
+                  <input
+                    type="text"
+                    id="correct_code1"
+                    class="border-red codes"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    readonly
+                    class="nonBorder-red codes"
+                    id="code1_error"
+                  />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">코드 2</div>
+                <div class="medium">인쇄코드-일련번호-페이지수-출력횟수</div>
+                <div class="showCodesfield">
+                  <input type="text" id="code2" class="border codes" readonly />
+                  <input
+                    type="text"
+                    id="correct_code2"
+                    class="border-red codes"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    readonly
+                    class="nonBorder-red codes"
+                    id="code2_error"
+                  />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">코드 3</div>
+                <div class="medium">인쇄코드-일련번호-페이지수-출력횟수</div>
+                <div class="showCodesfield">
+                  <input type="text" id="code3" class="border codes" readonly />
+                  <input
+                    type="text"
+                    id="correct_code3"
+                    class="border-red codes"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    readonly
+                    class="nonBorder-red codes"
+                    id="code3_error"
+                  />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">코드 4</div>
+                <div class="medium">인쇄코드-일련번호-페이지수-출력횟수</div>
+                <div class="showCodesfield">
+                  <input type="text" id="code4" class="border codes" readonly />
+                  <input
+                    type="text"
+                    id="correct_code4"
+                    class="border-red codes"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    readonly
+                    class="nonBorder-red codes"
+                    id="code4_error"
+                  />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">코드 5</div>
+                <div class="medium">인쇄코드-일련번호-페이지수-출력횟수</div>
+                <div class="showCodesfield">
+                  <input type="text" id="code5" class="border codes" readonly />
+                  <input
+                    type="text"
+                    id="correct_code5"
+                    class="border-red codes"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    readonly
+                    class="nonBorder-red codes"
+                    id="code5_error"
+                  />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">코드 6</div>
+                <div class="medium">인쇄코드-일련번호-페이지수-출력횟수</div>
+                <div class="showCodesfield">
+                  <input type="text" id="code6" class="border codes" readonly />
+                  <input
+                    type="text"
+                    id="correct_code6"
+                    class="border-red codes"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    readonly
+                    class="nonBorder-red codes"
+                    id="code6_error"
+                  />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">코드 7</div>
+                <div class="medium">인쇄코드-일련번호-페이지수-출력횟수</div>
+                <div class="showCodesfield">
+                  <input type="text" id="code7" class="border codes" readonly />
+                  <input
+                    type="text"
+                    id="correct_code7"
+                    class="border-red codes"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    readonly
+                    class="nonBorder-red codes"
+                    id="code7_error"
+                  />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">코드 8</div>
+                <div class="medium">인쇄코드-일련번호-페이지수-출력횟수</div>
+                <div class="showCodesfield">
+                  <input type="text" id="code8" class="border codes" readonly />
+                  <input
+                    type="text"
+                    id="correct_code8"
+                    class="border-red codes"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    readonly
+                    class="nonBorder-red codes"
+                    id="code8_error"
+                  />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">코드 9</div>
+                <div class="medium">인쇄코드-일련번호-페이지수-출력횟수</div>
+                <div class="showCodesfield">
+                  <input type="text" id="code9" class="border codes" readonly />
+                  <input
+                    type="text"
+                    id="correct_code9"
+                    class="border-red codes"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    readonly
+                    class="nonBorder-red codes"
+                    id="code9_error"
+                  />
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">코드 10</div>
+                <div class="medium">인쇄코드-일련번호-페이지수-출력횟수</div>
+                <div class="showCodesfield">
+                  <input
+                    type="text"
+                    id="code10"
+                    class="border codes"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    id="correct_code10"
+                    class="border-red codes"
+                    readonly
+                  />
+                  <input
+                    type="text"
+                    readonly
+                    class="nonBorder-red codes"
+                    id="code10_error"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function refreshPage() {
+        var confirmReload = confirm(
+          "입력하신 내용이 초기화됩니다. 계속하시겠습니까?"
+        );
+
+        if (confirmReload) {
+          location.reload();
+        }
+      }
+
+      function setDefaultValues() {
+        namefield.value = "";
+        emailfield.value = "";
+        phone2Input.value = "";
+        phone3Input.value = "";
+        order1.checked = true;
+        checkingOrderButtonState();
+      }
+
+      // Add an event listener to the 'DOMContentLoaded' event
+      document.addEventListener("DOMContentLoaded", function () {
+        // Call setDefaultValues() to set default values and update the button state
+        setDefaultValues();
+      });
+
+      // Add an event listener to the 'beforeunload' event
+      window.addEventListener("beforeunload", function () {
+        // Call setDefaultValues() to reset values before leaving the page
+        setDefaultValues();
+      });
+
+      window.onbeforeunload = function () {
+        return "데이터를 새로고침하시겠습니까?";
+      };
+      // Rest of your code here...
+
+      const tab1 = document.getElementById("tab1");
+      const content1 = document.getElementById("content1");
+
+      const tab2 = document.getElementById("tab2");
+      const content2 = document.getElementById("content2");
+
+      tab1.addEventListener("change", function () {
+        if (tab1.checked) {
+          content2.style.display = "none";
+          content1.style.display = "inline-flex";
+          //맨 위로 스크롤 이동
+          // content1.scrollIntoView({
+          //   behavior: "smooth",
+          //   block: "start",
+          //   inline: "nearest",
+          // });
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
+
+      tab2.addEventListener("change", function () {
+        if (tab2.checked) {
+          content1.style.display = "none";
+          content2.style.display = "inline-flex";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
+
+      const email = document.getElementById("showemail");
+      const phone = document.getElementById("showphone");
+
+      const emailfield = document.getElementById("email");
+      const phone2Input = document.getElementById("phone2");
+      const phone3Input = document.getElementById("phone3");
+
+      const order1 = document.getElementById("kakao_noti");
+      const order2 = document.getElementById("email_noti");
+      const nokakao = document.getElementById("nokakao");
+      const yeskakao = document.getElementById("yeskakao");
+      const noemail = document.getElementById("noemail");
+      const yesemail = document.getElementById("yesemail");
+      const ordercheck1 = document.getElementById("noti1");
+      const ordercheck2 = document.getElementById("noti2");
+
+      order1.addEventListener("change", function () {
+        if (order1.checked) {
+          nokakao.style.display = "none";
+          yeskakao.style.display = "inline-block";
+          noemail.style.display = "inline-block";
+          yesemail.style.display = "none";
+          ordercheck1.style.color = "#e7404a";
+          ordercheck1.style.backgroundColor = "rgba(253, 236, 237, 1)";
+          ordercheck1.style.borderColor = "#e7404a";
+          ordercheck1.style.fontWeight = "bold";
+          ordercheck2.style.color = "#aaaaaa";
+          ordercheck2.style.backgroundColor = "white";
+          ordercheck2.style.borderColor = "#e6e6e6";
+          ordercheck2.style.fontWeight = "400";
+          phone.style.display = "inline-flex";
+          email.style.display = "none";
+          emailfield.value = "";
+          warning3.style.display = "none";
+          checkingOrderButtonState();
+        }
+      });
+
+      order2.addEventListener("change", function () {
+        if (order2.checked) {
+          yeskakao.style.display = "none";
+          nokakao.style.display = "inline-block";
+          yesemail.style.display = "inline-block";
+          noemail.style.display = "none";
+          ordercheck2.style.color = "#e7404a";
+          ordercheck2.style.backgroundColor = "rgba(253, 236, 237, 1)";
+          ordercheck2.style.borderColor = "#e7404a";
+          ordercheck2.style.fontWeight = "bold";
+          ordercheck1.style.color = "#aaaaaa";
+          ordercheck1.style.backgroundColor = "white";
+          ordercheck1.style.borderColor = "#e6e6e6";
+          ordercheck1.style.fontWeight = "400";
+          phone.style.display = "none";
+          phone2Input.value = "";
+          phone3Input.value = "";
+          email.style.display = "inline-block";
+          warning2.style.display = "none";
+          checkingOrderButtonState();
+        }
+      });
+
+      const namefield = document.getElementById("name");
+      const warning1 = document.getElementById("warning1");
+      const namefield_tab2 = document.getElementById("name_tab2");
+      const warning1_tab2 = document.getElementById("warning1_tab2");
+
+      namefield.addEventListener("input", function () {
+        var inputText = namefield.value.trim();
+
+        if (inputText.length < 2) {
+          warning1.style.display = "inline-block";
+        } else {
+          warning1.style.display = "none";
+        }
+        checkingOrderButtonState();
+      });
+
+      namefield_tab2.addEventListener("input", function () {
+        var inputText = namefield_tab2.value.trim();
+
+        if (inputText.length < 2) {
+          warning1_tab2.style.display = "inline-block";
+        } else {
+          warning1_tab2.style.display = "none";
+        }
+        checkingOrderButtonState2();
+      });
+      const numberInputs = document.querySelectorAll('input[type="number"]');
+
+      numberInputs.forEach((numberInput) => {
+        numberInput.addEventListener("keydown", (event) => {
+          const invalidCharacters = ["+", "-", "."];
+          if (invalidCharacters.includes(event.key)) {
+            event.preventDefault();
+          }
+        });
+      });
+
+      const warning2 = document.getElementById("warning2");
+
+      const warning2_tab2 = document.getElementById("warning2_tab2");
+      const OrderNum2Input = document.getElementById("Order_num2");
+      const OrderNum3Input = document.getElementById("Order_num3");
+
+      phone2Input.addEventListener("input", function () {
+        const phone2Value = phone2Input.value.trim();
+        const phone3Value = phone3Input.value.trim();
+
+        if (phone2Value.length !== 4 || phone3Value.length !== 4) {
+          warning2.style.display = "inline-block";
+        } else {
+          warning2.style.display = "none";
+        }
+        checkingOrderButtonState();
+      });
+
+      phone3Input.addEventListener("input", function () {
+        const phone2Value = phone2Input.value.trim();
+        const phone3Value = phone3Input.value.trim();
+
+        if (phone2Value.length !== 4 || phone3Value.length !== 4) {
+          warning2.style.display = "inline-block";
+        } else {
+          warning2.style.display = "none";
+        }
+        checkingOrderButtonState();
+      });
+
+      ////////////////////////////////////////////////////////////
+      OrderNum2Input.addEventListener("input", function () {
+        const OrderNum2Value = OrderNum2Input.value.trim();
+        const OrderNum3Value = OrderNum3Input.value.trim();
+
+        if (OrderNum2Value.length !== 4 || OrderNum3Value.length !== 4) {
+          warning2_tab2.style.display = "inline-block";
+        } else {
+          warning2_tab2.style.display = "none";
+        }
+        checkingOrderButtonState2();
+      });
+
+      OrderNum3Input.addEventListener("input", function () {
+        const OrderNum2Value = OrderNum2Input.value.trim();
+        const OrderNum3Value = OrderNum3Input.value.trim();
+
+        if (OrderNum2Value.length !== 4 || OrderNum3Value.length !== 4) {
+          warning2_tab2.style.display = "inline-block";
+        } else {
+          warning2_tab2.style.display = "none";
+        }
+        checkingOrderButtonState2();
+      });
+
+      function handleOnInput(el, maxlength) {
+        if (el.value.length > maxlength) {
+          el.value = el.value.substr(0, maxlength);
+        }
+      }
+
+      const warning3 = document.getElementById("warning3");
+
+      function check_mail() {
+        var aIndex = emailfield.value.indexOf("@");
+        var dotIndex = emailfield.value.indexOf(".");
+        var len = emailfield.value.length;
+
+        if (
+          aIndex == 0 ||
+          len == dotIndex + 1 ||
+          aIndex == -1 ||
+          dotIndex == -1 ||
+          aIndex >= dotIndex - 1
+        ) {
+          //첫번째 잘못된 경우--> [@]가 처음에 위치하는 경우
+          //두번째 잘못된 경우 --> '.'가 마지막에 위치하는 경우
+          //세번째 --> '@', '.'가 없거나 '@'가 '.' 뒤에 위치하거나 붙어있는 경우
+          return false;
+        } else {
+          return true;
+        }
+      }
+
+      emailfield.addEventListener("input", function () {
+        if (!check_mail()) {
+          warning3.style.display = "inline-block";
+        } else {
+          warning3.style.display = "none";
+        }
+        checkingOrderButtonState();
+      });
+
+      const checkingOrderBtn = document.getElementById("checkedOrder");
+      const checkingOrderBtn_tab2 = document.getElementById("checkedOrder2");
+      //배송비 조건문
+      function checkingOrderButtonState() {
+        //첫번째 조건(주문자 정보)
+        var condition1 = 0;
+        var con1_var1 = 0;
+        var con1_var2 = 0;
+
+        var inputText = namefield.value.trim();
+        if (inputText.length >= 2) {
+          con1_var1 = 1; //name만족
+        }
+        //전화번호가 체크되어 있으면 전화번호 조건 만족, 아니면 이메일 만족
+        if (order1.checked) {
+          var phone2Value = phone2Input.value.trim();
+          var phone3Value = phone3Input.value.trim();
+
+          if (phone2Value.length == 4 && phone3Value.length == 4) {
+            con1_var2 = 1;
+          }
+        } else if (order2.checked) {
+          if (check_mail()) {
+            con1_var2 = 1;
+          }
+        }
+
+        condition1 = con1_var1 * con1_var2;
+
+        if (condition1 == 1) {
+          checkingOrderBtn.disabled = false;
+        } else {
+          checkingOrderBtn.disabled = true;
+        }
+      }
+
+      checkingOrderButtonState();
+
+      function checkingOrderButtonState2() {
+        //첫번째 조건(주문자 정보)
+        var condition1 = 0;
+        var con1_var1 = 0;
+        var con1_var2 = 0;
+
+        var inputText = namefield_tab2.value.trim();
+        if (inputText.length >= 2) {
+          con1_var1 = 1; //name만족
+        }
+        //주문번호 조선
+        var Order2Value = OrderNum2Input.value.trim();
+        var Order3Value = OrderNum3Input.value.trim();
+
+        if (Order2Value.length == 4 && Order3Value.length == 4) {
+          con1_var2 = 1;
+        }
+
+        condition1 = con1_var1 * con1_var2;
+
+        if (condition1 == 1) {
+          checkingOrderBtn_tab2.disabled = false;
+        } else {
+          checkingOrderBtn_tab2.disabled = true;
+        }
+      }
+
+      checkingOrderButtonState2();
+
+      //금액 표시 함수
+      function formatAmount(amount) {
+        // Convert the amount to a number if it's not already
+        const numAmount = Number(amount);
+
+        // Check if the number is valid
+        if (isNaN(numAmount)) {
+          numAmount = 0;
+          return numAmount;
+        }
+
+        // Format the number using the toLocaleString() method
+        const formattedAmount = numAmount.toLocaleString("ko-KR", {
+          minimumFractionDigits: 0,
+        });
+
+        return formattedAmount + "원";
+      }
+
+      function formatAmount_tab2(amount) {
+        // Convert the amount to a number if it's not already
+        const numAmount = Number(amount);
+
+        // Check if the number is valid
+        if (isNaN(numAmount)) {
+          numAmount = 0;
+          return numAmount;
+        }
+
+        // Format the number using the toLocaleString() method
+        const formattedAmount = numAmount.toLocaleString("ko-KR", {
+          minimumFractionDigits: 0,
+        });
+
+        return formattedAmount;
+      }
+
+      //페이지
+      function formatAmount2(amount) {
+        // Convert the amount to a number if it's not already
+        const numAmount = Number(amount);
+
+        // Check if the number is valid
+        if (isNaN(numAmount)) {
+          numAmount = 0;
+          return numAmount;
+        }
+
+        // Format the number using the toLocaleString() method
+        const formattedAmount = numAmount.toLocaleString("ko-KR", {
+          minimumFractionDigits: 0,
+        });
+
+        return formattedAmount + "장";
+      }
+
+      //일
+      function formatAmount3(amount) {
+        // Convert the amount to a number if it's not already
+        const numAmount = Number(amount);
+
+        // Check if the number is valid
+        if (isNaN(numAmount)) {
+          numAmount = 0;
+          return numAmount;
+        }
+
+        // Format the number using the toLocaleString() method
+        const formattedAmount = numAmount.toLocaleString("ko-KR", {
+          minimumFractionDigits: 0,
+        });
+
+        return formattedAmount + "일";
+      }
+
+      //구글 스크립트에 정보 요청
+      function getData() {
+        //A열 이름
+        var getname = namefield.value;
+
+        //B열 전화번호
+        var getphone1 = "";
+        var getphone2 = "";
+        var getfinalphone = "";
+
+        //C열 이메일
+        var getemail = "";
+
+        if (order1.checked) {
+          getphone1 = phone2Input.value;
+          getphone2 = phone3Input.value;
+
+          getfinalphone = Number("10" + getphone1 + getphone2);
+          // getfinalphone = 1066450232
+        } else if (order2.checked) {
+          getemail = emailfield.value;
+        }
+
+        google.script.run
+          .withSuccessHandler(update_inquiry)
+          .getDataFromSheet(getname, getfinalphone, getemail);
+      }
+
+      const phone1Input = document.getElementById("phone1");
+      const cost_storage = document.getElementById("cost_storage");
+      const pages_storage = document.getElementById("pages_storage");
+      const days_storage = document.getElementById("days_storage");
+      const deliveryFee_storage = document.getElementById(
+        "deliveryFee_storage"
+      );
+      const arrow2 = document.getElementById("arrow2");
+      const arrow3 = document.getElementById("arrow3");
+
+      function update_inquiry(data) {
+        if (data.length !== 0) {
+          cost_storage.value = formatAmount(data[0]);
+          pages_storage.value = formatAmount2(data[1]);
+          days_storage.value = formatAmount3(data[2]);
+          deliveryFee_storage.value = formatAmount(data[3]);
+          warning10.style.display = "none";
+          arrow2.style.color = "#e7404a";
+        } else {
+          cost_storage.value = "";
+          pages_storage.value = "";
+          days_storage.value = "";
+          deliveryFee_storage.value = "";
+          warning10.style.display = "inline-block";
+          arrow2.style.color = "#aaaaaa";
+        }
+        checkingOrderButtonState();
+      }
+
+      //////////////////////////////////////tab2 정보 불러오기//////////////
+      //구글 스크립트에 정보 요청
+      function getData2() {
+        //A열 주문번호
+        var ordernum1 = OrderNum2Input.value;
+        var ordernum2 = OrderNum3Input.value;
+        var getOrdernum = "23" + "-" + ordernum1 + "-" + ordernum2;
+
+        //B열 이름
+        var getname = namefield_tab2.value;
+
+        google.script.run
+          .withSuccessHandler(update_inquiry2)
+          .getDataFromSheet2(getOrdernum, getname);
+      }
+
+      const total_cost = document.getElementById("total_cost");
+      const total_pages = document.getElementById("total_pages");
+      const changed_price = document.getElementById("changed_price");
+
+      const codes = document.querySelectorAll(".codes");
+
+      function update_inquiry2(data) {
+        if (data.length !== 0) {
+          total_cost.textContent = formatAmount_tab2(data[0]);
+
+          if (data[1] === null) {
+            total_pages.textContent = "-";
+          } else {
+            total_pages.textContent = data[1];
+          }
+
+          if (data[2] === 0) {
+            changed_price.textContent = "없음";
+          } else if (data[2] < 0) {
+            changed_price.textContent =
+              formatAmount_tab2(data[2] * -1) + "원" + " " + "(추가입금)";
+          } else if (data[2] > 0) {
+            changed_price.textContent =
+              formatAmount_tab2(data[2]) + "원" + " " + "(환불)";
+          } else if (data[2] === null) {
+            changed_price.textContent = "-";
+          }
+
+          data[3].forEach((OrderNumInfo, index) => {
+            codes[index].value = OrderNumInfo;
+          });
+
+          warning10_tab2.style.display = "none";
+          arrow3.style.color = "#e7404a";
+        } else {
+          total_cost.textContent = "-";
+          total_pages.textContent = "-";
+          changed_price.textContent = "-";
+          codes.forEach((code_each) => (code_each.value = ""));
+          warning10_tab2.style.display = "inline-block";
+          arrow3.style.color = "#aaaaaa";
+        }
+        checkingOrderButtonState2();
+      }
+
+      ////화살표 애니메이션
+
+      // 버튼 클릭 이벤트 리스너 등록
+      checkingOrderBtn.addEventListener("click", function () {
+        // 애니메이션 클래스 추가
+        arrow2.classList.add("animate-arrow");
+
+        // 애니메이션이 끝난 후에 클래스 제거 (setTimeout을 통해 딜레이를 줍니다)
+        setTimeout(function () {
+          arrow2.classList.remove("animate-arrow");
+        }, 1000); // 1000ms (1초) 후에 클래스 제거
+      });
+
+      checkingOrderBtn_tab2.addEventListener("click", function () {
+        // 애니메이션 클래스 추가
+        arrow3.classList.add("animate-arrow");
+
+        // 애니메이션이 끝난 후에 클래스 제거 (setTimeout을 통해 딜레이를 줍니다)
+        setTimeout(function () {
+          arrow3.classList.remove("animate-arrow");
+        }, 1000); // 1000ms (1초) 후에 클래스 제거
+      });
+    </script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  </body>
+</html>

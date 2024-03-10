@@ -1,0 +1,3961 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IM:EASY_Order</title>
+    <!-- 파비콘 -->
+    <link rel="icon" href="https://ifh.cc/g/JhOlgT.png" />
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"
+    />
+    <style>
+      @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
+      body {
+        font-family: "NanumSquare", sans-serif;
+        display: flex;
+        flex-direction: column;
+        /* -webkit-text-size-adjust: 100%; */
+        background-color: #f6f6f6;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      button{
+        font-family: "NanumSquare", sans-serif;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      .container {
+        /* margin: 10%; */
+        padding-bottom: 100px;
+        margin-top: 80px;
+        padding-top: 15px;
+        top: 0;
+        /* max-width: 90vw; */
+        width: 500px;
+        background-color: white;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .top {
+        position: fixed;
+        display: flex;
+        /* max-width: 90vw; */
+        width: 500px;
+        margin: auto;
+        top: 0;
+        flex-direction: column;
+        background-color: white;
+        height: 90px;
+        line-height: 100%;
+        z-index: 8;
+      }
+
+      .top_line {
+        /* background-color: yellow; */
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .top_line h1 {
+        display: inline-flex;
+        flex-direction: row;
+        font-size: 130%;
+        margin-left: 1.5rem;
+        font-weight: 800;
+        white-space: nowrap;
+        /* background-color: #aaaaaa; */
+        width: max-content;
+      }
+
+      .top_line .xi-refresh {
+        display: inline-flex;
+        flex-direction: row;
+        font-size: 130%;
+        font-weight: 400;
+        white-space: nowrap;
+        /* background-color: #aaaaaa; */
+        width: max-content;
+        height: max-content;
+        margin-right: 1.5rem;
+      }
+
+      h1 .red {
+        color: rgba(231, 64, 74, 1);
+      }
+
+      .top .tab_bar {
+        display: inline-flex;
+        position: relative;
+        margin-left: 1.6rem;
+        font-size: 115%;
+        font-weight: 600;
+        white-space: nowrap;
+        /* background-color: aqua; */
+        width: 90%;
+        height: 30px;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: nowrap;
+        align-content: center;
+        margin-top: 1.5rem;
+      }
+
+      .top .tab_bar input {
+        display: none;
+      }
+
+      .top .tab_bar label {
+        font-size: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        border-bottom: 2px solid #e6e6e6;
+        display: inline-flex;
+        width: 50%;
+        font-weight: 400;
+        justify-content: center;
+        color: #aaaaaa;
+      }
+
+      /* 클릭할 수 있다는 것을 사용자에 알려주기 위해 마우스 포인터 모양 적용*/
+      .top .tab_bar label:hover {
+        cursor: pointer;
+      }
+
+      /* 어떤 탭이 선택되었는지 색으로 알려줌 */
+      .top .tab_bar input:checked + label {
+        color: #e7404a;
+        border-bottom: 2px solid #e7404a;
+        font-weight: 700;
+      }
+
+      .main {
+        margin-top: 1px;
+        width: 100%;
+        /* background-color: #d8236a; */
+      }
+
+      #content1 {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        /* background-color: #e7404a; */
+      }
+
+      .person_content1 {
+        display: inline-block;
+        /* background-color: yellow; */
+        width: 90%;
+        text-align: left;
+      }
+
+      .code_content1 {
+        display: inline-block;
+        /* background-color: yellow; */
+        width: 90%;
+        text-align: left;
+      }
+
+      #title1,
+      #title2 {
+        font-size: 110%;
+        font-weight: 600;
+        display: inline-block;
+        background-color: #e6e6e6;
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: normal;
+        margin-bottom: 1rem;
+      }
+
+      #title2 {
+        margin-top: 2rem;
+      }
+      .smallnum_list {
+        /* background-color: aqua; */
+        display: inline-flex;
+        flex-direction: column;
+        list-style: none;
+        font-size: 95%;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        margin-bottom: 1rem;
+        margin-top: 0.3rem;
+      }
+
+      .smallnum_list .smallnum {
+        /* background-color: antiquewhite; */
+        display: inline-flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        line-height: 2.5rem;
+      }
+
+      .red {
+        color: #e7404a;
+      }
+
+      .smallnum_list p {
+        margin-top: -0.1rem;
+        margin-bottom: -0.1rem;
+      }
+
+      .grey_letter {
+        color: #7f7f7f;
+        font-size: 95%;
+      }
+
+      #break_point {
+        background-color: #f6f6f6;
+        width: 100%;
+        height: 1rem;
+      }
+
+      .code_content1 {
+        display: inline-block;
+        /* background-color: yellow; */
+        width: 90%;
+        text-align: left;
+      }
+
+      #content2 {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        /* background-color: #e7404a; */
+      }
+
+      .main_content2 {
+        display: inline-block;
+        /* background-color: yellow; */
+        width: 90%;
+        text-align: left;
+      }
+
+      #example_img {
+        box-sizing: border-box;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+
+      #content3 {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        /* background-color: #e7404a; */
+      }
+
+      .main_content3 {
+        display: inline-block;
+        /* background-color: yellow; */
+        width: 90%;
+        text-align: left;
+      }
+
+      #price_img {
+        box-sizing: border-box;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      /*위에는 모두 top, 작성방법, 가격표 부분*/
+
+      /*여기서부터 신청서 작성 코드*/
+      .sender_info {
+        display: inline-flex;
+        flex-direction: column;
+        /* background-color: antiquewhite; */
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .code_info {
+        display: inline-flex;
+        flex-direction: column;
+        /* background-color: antiquewhite; */
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .input-container {
+        display: inline-flex;
+        flex-direction: column;
+        /* background-color: aliceblue; */
+        width: 100%;
+        margin-bottom: 2rem;
+        /* margin-top: 3%;
+        margin-left: 3%; */
+      }
+
+      .bold {
+        font-size: 100%;
+        font-weight: 600;
+        text-indent: 0.5rem;
+        line-height: 2rem;
+        display: inline-block;
+        width: max-content;
+      }
+
+      .star {
+        color: #e7404a;
+        /* background-color: #aaaaaa; */
+        display: inline-block;
+        text-indent: 0.1rem;
+      }
+
+      .medium {
+        font-size: 90%;
+        font-weight: 400;
+        text-indent: 0.5rem;
+        color: #7f7f7f;
+        margin-bottom: 0.5rem;
+        line-height: 1.3rem;
+      }
+
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+
+      input[type = "text"], input[type ="number"]{
+        font-family: "NanumSquare", sans-serif;
+      }
+      input[type="radio"] {
+        display: none;
+      }
+
+      .input-container2 {
+        display: inline-flex;
+        /* background-color: aqua; */
+        flex-direction: column;
+      }
+
+      .input-container2 .option {
+        /* background-color: antiquewhite; */
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        text-align: left;
+        line-height: normal;
+        font-size: 98%;
+        padding-left: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 100%;
+        margin-bottom: 0.7rem;
+        color: #aaaaaa;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      #noti1, #picture2 {
+        border-color: #e7404a;
+        background-color: rgba(253, 236, 237, 1);
+        color: #e7404a;
+        font-weight: bold;
+      }
+
+      .input-container2 .option .xi-radiobox-blank {
+        color: #e6e6e6;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+        margin-right: 0.2rem;
+      }
+
+      .input-container2 .option .xi-radiobox-checked {
+        color: #e7404a;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+        margin-right: 0.2rem
+      }
+
+      #name {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        text-align: left;
+        line-height: normal;
+        font-size: 98%;
+        padding-left: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 100%;
+        margin-bottom: 0.7rem;
+        color: black;
+        cursor: pointer;
+      }
+
+      #name::placeholder {
+        color: #aaaaaa;
+        font-size: 98%;
+        font-family: "NanumSquare", sans-serif;
+        font-weight: 400;
+      }
+
+      #name:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      .warningMessage {
+        font-size: 90%;
+        font-weight: 400;
+        text-indent: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: #e7404a;
+      }
+
+      .warningMessage_printcode1 {
+        font-size: 90%;
+        font-weight: 400;
+        text-indent: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: #e7404a;
+      }
+
+      .warningMessage_printcode2 {
+        font-size: 90%;
+        font-weight: 400;
+        text-indent: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: #e7404a;
+      }
+      .phonefield {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: -0.5rem;
+      }
+      /* input {
+        position: relative;
+        text-indent: 0.5em;
+        width: 30%;
+        height: 50px;
+        font-size: medium;
+        border: 0;
+        border-radius: 5px;
+      } */
+
+      #phone1,
+      #phone2,
+      #phone3 {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        line-height: normal;
+        font-size: 98%;
+        text-align: center;
+        color: black;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      #phone1 {
+        cursor: default;
+      }
+
+      #phone1:focus {
+        outline: none;
+      }
+
+      #phone2:focus,
+      #phone3:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      #email {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        text-align: left;
+        line-height: normal;
+        font-size: 98%;
+        padding-left: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 100%;
+        margin-bottom: 0.7rem;
+        color: black;
+        cursor: pointer;
+      }
+
+      #email::placeholder {
+        color: #aaaaaa;
+        font-size: 98%;
+        font-family: "NanumSquare", sans-serif;
+        font-weight: 400;
+      }
+
+      #email:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      /*여기서부터 코드 정보 스타일*/
+
+      /*토글 버튼 스타일*/
+      .code_toggle {
+        display: inline-flex;
+        flex-direction: row;
+        /* background-color: #7f7f7f; */
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .xi-toggle-on {
+        /* background-color: #aaaaaa; */
+        width: max-content;
+        height: max-content;
+        font-size: 180%;
+        color: #e6e6e6;
+        padding-right: 0.5rem;
+        cursor: pointer;
+        transform-origin: 40% 40%;
+        transform: rotateY(180deg);
+      }
+
+      .print_code {
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        font-weight: 400;
+        text-align: left;
+        line-height: normal;
+        font-size: 98%;
+        padding-left: 1rem;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        width: 100%;
+        margin-bottom: 0.7rem;
+        color: black;
+        cursor: pointer;
+      }
+
+      .print_code::placeholder {
+        color: #aaaaaa;
+        font-size: 98%;
+        font-family: "NanumSquare", sans-serif;
+        font-weight: 400;
+      }
+
+      .print_code:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      /*dropdown part*/
+
+      .dropdown {
+        background: #fff;
+        display: inline-block;
+        width: 100%;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 100%;
+        padding-left: 1rem;
+        color: #aaaaaa;
+        box-sizing: border-box;
+        position: relative;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid #e6e6e6;
+        margin-bottom: 0.7rem;
+      }
+      .dropdown:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      .dropdown:after {
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        border-width: 4px;
+        border-style: solid;
+        border-color: transparent transparent #000000 transparent;
+        transform: rotate(180deg);
+        transition: 300ms;
+      }
+
+      .active:after {
+        border-width: 4px;
+        border-style: solid;
+        border-color: transparent transparent #000000 transparent;
+        transform: rotate(360deg);
+        top: 1.3rem;
+        transition: 300ms;
+      }
+
+      .dropdown-list {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0;
+        position: relative;
+        margin-top: 0rem;
+        opacity: 0;
+        transition: opacity 0.2s linear;
+        font-size: 100%;
+        font-weight: 600;
+        border: 1px solid #e6e6e6;
+        z-index: 5;
+        display: none;
+        border-radius: 5px;
+      }
+
+      .dropdown-list li {
+        list-style: none;
+        background: #fff;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 105%;
+        font-weight: 500;
+        padding-left: 1rem;
+        box-sizing: border-box;
+        border-radius: 5px;
+        color: #000000;
+        z-index: 5;
+      }
+
+      .dropdown-list li:hover {
+        cursor: pointer;
+      }
+
+      .opened {
+        opacity: 1 !important;
+      }
+
+      /*페이지 수 디자인*/
+      .page {
+        background: #fff;
+        display: inline-flex;
+        width: 100%;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        color: #aaaaaa;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 5px;
+        border: 1px solid #e6e6e6;
+        justify-content: space-between;
+        margin-bottom: 0.7rem;
+      }
+
+      .page:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      .counter {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        margin-right: 0.2rem;        
+        font-family: "NanumSquare", sans-serif;
+        font-weight: 400;
+        /* background-color: #e7404a; */
+      }
+
+      .xi-minus-circle {
+        color: #aaaaaa;
+        cursor: default;
+        /* background-color: #e7404a; */
+        /* padding: 5%; */
+      }
+
+      .xi-plus-circle {
+        color: #000000;
+        cursor: pointer;
+        /* padding: 5%; */
+      }
+
+      .page_count {
+        margin: 0 1rem;
+        width: auto;
+        text-align: center;
+        border: none;
+        font-family: "NanumSquare", sans-serif;
+        font-weight: 400;
+        /* background-color: aqua; */
+      }
+
+      .page_count:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      /*페이지 수 디자인*/
+      .print {
+        background: #fff;
+        display: inline-flex;
+        width: 100%;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        color: #aaaaaa;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 5px;
+        border: 1px solid #e6e6e6;
+        justify-content: space-between;
+        margin-bottom: 0.7rem;
+      }
+
+      .print:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      .counter {
+        display: flex;
+        align-items: center;
+      }
+
+      .xi-minus-circle {
+        color: #aaaaaa;
+        cursor: pointer;
+        /* background-color: #e7404a; */
+        font-size: medium;
+        padding: 3%;
+      }
+
+      .xi-plus-circle {
+        color: #000000;
+        cursor: pointer;
+        /* background-color: #e7404a; */
+        font-size: medium;
+        margin-right: 0.7rem;
+        padding: 3%;
+      }
+
+      .print_count {
+        margin: 0 1rem;
+        width: max-content;
+        text-align: center;
+        border: none;
+        font-family: "NanumSquare", sans-serif;
+        font-weight: 400;
+      }
+
+      .print_count:focus {
+        outline: none;
+        border-color: #e7404a;
+      }
+
+      /*각각의 코드 가격 합*/
+      .code_sumbox {
+        background: rgba(253, 236, 237, 1);
+        display: inline-flex;
+        width: 100%;
+        font-size: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        color: black;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 0.7rem;
+        font-weight: 600;
+        justify-content: right;
+        align-items: center;
+        padding-top: 0.6rem;
+        padding-bottom: 0.6rem;
+      }
+
+      .codeprice_sum,
+      .codepage_sum {
+        text-align: right;
+        border: none;
+        background-color: rgba(253, 236, 237, 1);
+        font-size: 100%;
+        /* padding: 0%; */
+        font-weight: 600;
+        cursor: default;
+        width: auto;
+        /* display: block; */
+      }
+
+      .disabled-div{
+        opacity:0.6;
+        pointer-events:none;
+        background-Color: #f6f6f6;
+        color: #aaaaaa;
+        cursor:default;
+      }
+
+      .bottom{
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        width: 500px;
+        height: 120px;
+        background-color: white;
+        flex-direction: column;
+        /* box-shadow: 5px 5px 20px; */
+      }
+
+      .bottom_topline{
+        display: inline-flex;
+        flex-direction: row;
+        /* background-color: #e7404a; */
+        justify-content: center;
+        align-items: center;
+        font-size: 98%;
+        font-weight: 700;
+        color: #aaaaaa;
+      }
+
+      .bottom_bottomline{
+        /* background-color: aqua; */
+        margin-bottom: 0;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+      }
+
+      #final_confirm_btn:disabled{
+        background: #f6f6f6;
+        display: inline-flex;
+        width: 100%;
+        font-family: "NanumSquare", sans-serif;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 110%;
+        font-weight: 600;
+        color: #aaaaaa;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 5px;
+        border: none;
+        justify-content: center;
+        margin-bottom: 0.7rem;
+      }
+
+      #final_confirm_btn:enabled{
+        background: #e7404a;
+        display: inline-flex;
+        width: 100%;
+        font-family: "NanumSquare", sans-serif;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 110%;
+        font-weight: 600;
+        color: white;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 5px;
+        border: none;
+        justify-content: center;
+        margin-bottom: 0.7rem;
+        cursor: pointer;
+      }
+
+    #pop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 30;
+      display: none;
+    }
+
+    #pop .message {
+      width: 440px;
+      height: 220px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      right: 50%;
+      border: none;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .message .pop_content {
+      width: 100%; 
+      height: 100%; 
+      /* background-color: #7f7f7f; */
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      justify-content: space-between;     
+    }
+
+    .notification_area{
+      display: inline-block;
+      /* background-color: aqua; */
+      margin-top: 3rem;
+      box-sizing: border-box;
+      width: 100%;
+      line-height: 2rem;
+    }
+
+    .button_area{
+      background-color: #f6f6f6;
+      width: 100%;
+      display: inline-flex;
+      justify-content: space-between;
+      border-radius: 5px;
+    }
+
+    #cancel_btn, #checked_btn{
+      width: 100%;
+      box-sizing: border-box;
+      border: none;
+      height: 65px;
+      margin-bottom: 0;
+
+      cursor: pointer;
+      font-size: 98%;
+    }
+
+    #cancel_btn{
+      border-top: 2px solid #e6e6e6;
+      border-right: 2px solid #e6e6e6;
+      border-bottom-left-radius : 5px;
+    }
+
+    #checked_btn{
+      font-weight: 600;
+      color: #e7404a;
+      border-top: 2px solid #e6e6e6;
+      border-bottom-right-radius : 5px;
+    }
+
+    #pop2 {
+      position: fixed;
+      top: 0;
+      height: 100%;
+      width: 500px;
+      background-color: white;
+      /* display: inline-flex; */
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 50;
+      display: none;
+      /* display: inline-flex; */
+    }
+
+    .image {
+      width: 150px;
+      height: 150px;
+      border-radius: 100%;
+      overflow: hidden;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    .bold2 {
+      font-size: 100%;
+      font-weight: 600;
+      line-height: 2.5rem;
+      display: inline-block;
+      width: max-content;
+    }
+    .medium2 {
+      font-size: 90%;
+      font-weight: 400;
+      color: #7f7f7f;
+      line-height: 1.5rem;
+    }
+
+    .button_area2 {
+      /* background-color: #7f7f7f; */
+      width: 60%;
+      margin: 3rem;
+    }
+
+    #gohome_btn {
+      background: #e7404a;
+      display: inline-flex;
+      width: 100%;
+      font-family: "NanumSquare", sans-serif;
+      padding-top: 1.1rem;
+      padding-bottom: 1.1rem;
+      font-size: 110%;
+      font-weight: 600;
+      color: white;
+      box-sizing: border-box;
+      position: relative;
+      border-radius: 5px;
+      border: none;
+      justify-content: center;
+      margin-bottom: 0.7rem;
+      cursor: pointer;
+    }
+
+    #pop3 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 30;
+      display: none;
+      /* display: inline-block; */
+    }
+
+    #pop3 .message {
+      width: 440px;
+      height: 220px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      right: 50%;
+      border: none;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content:center;
+    }
+
+    #cancel_btn2{
+      width: 100%;
+      box-sizing: border-box;
+      border: none;
+      height: 65px;
+      margin-bottom: 0;
+      cursor: pointer;
+      font-size: 98%;
+      border-top: 2px solid #e6e6e6;
+      border-bottom-left-radius : 5px;
+      border-bottom-right-radius : 5px;
+    }
+    .notification_area{
+      width: 80%;
+      height: 50%;
+      /* background-color: #e7404a; */
+      align-self: center;
+      margin-top: 2.5rem;
+    }
+
+    .bold3{
+      font-size: 100%;
+      font-weight: 600;
+      line-height: 1.5rem;
+      vertical-align: top;
+      display: inline-block;
+      width: max-content;
+    }
+
+    /*모바일 환경*/
+    /* ///////////////////////////////////////////////////////////////// */
+    @media (max-width: 767px) {
+      /* .container {
+          padding-bottom: 100px;
+          margin-top: 80px;
+          padding-top: 15px;
+          width: 500px;
+        }
+
+        .top {
+          width: 500px;
+          height: 90px;
+          line-height: 100%;
+        }
+
+        .top_line h1 {
+          font-size: 130%;
+          margin-left: 1.5rem;
+        }
+
+        .top_line .xi-refresh {
+          font-size: 130%;
+          margin-right: 1.5rem;
+        }
+
+        .top .tab_bar {
+          margin-left: 1.6rem;
+          font-size: 115%;
+          width: 90%;
+          height: 30px;
+          margin-top: 1.5rem;
+        }
+
+        .top .tab_bar label {
+          font-size: 85%;
+          width: 50%;
+        }
+
+        .main {
+          margin-top: 1px;
+          width: 100%;
+        }
+
+        #content1 {
+          width: 100%;
+        }
+
+        .person_content1 {
+          width: 90%;
+        }
+
+        .code_content1 {
+          width: 90%;
+        }
+
+        #title1,
+        #title2 {
+          font-size: 110%;
+          width: 100%;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          margin-bottom: 1rem;
+        }
+
+        #title2 {
+          margin-top: 2rem;
+        }
+        .smallnum_list {
+          font-size: 95%;
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+          margin-bottom: 1rem;
+          margin-top: 0.3rem;
+        }
+
+        .smallnum_list .smallnum {
+          line-height: 2.5rem;
+        }
+
+        .smallnum_list p {
+          margin-top: -0.1rem;
+          margin-bottom: -0.1rem;
+        }
+
+        .grey_letter {
+          font-size: 95%;
+        }
+
+        #break_point {
+          width: 100%;
+          height: 1rem;
+        }
+
+        .code_content1 {
+          width: 90%;
+        }
+
+        #content2 {
+          width: 100%;
+        }
+
+        .main_content2 {
+          width: 90%;
+        }
+
+        #example_img {
+          width: 100%;
+          margin-bottom: 0.5rem;
+        }
+
+        #content3 {
+          width: 100%;
+        }
+
+        .main_content3 {
+          width: 90%;
+        }
+
+        #price_img {
+          width: 100%;
+          margin-bottom: 0.5rem;
+        }
+
+        .sender_info {
+          width: 100%;
+        }
+
+        .code_info {
+          width: 100%;
+        }
+
+        .input-container {
+          width: 100%;
+          margin-bottom: 2rem;
+        }
+
+        .bold {
+          font-size: 100%;
+          text-indent: 0.5rem;
+          line-height: 2rem;
+        }
+
+        .star {
+          text-indent: 0.1rem;
+        }
+
+        .medium {
+          font-size: 90%;
+          text-indent: 0.5rem;
+          margin-bottom: 0.5rem;
+          line-height: 1.3rem;
+        }
+
+        .input-container2 .option {
+          font-size: 98%;
+          padding-left: 1rem;
+          padding-top: 1.1rem;
+          padding-bottom: 1.1rem;
+          width: 100%;
+          margin-bottom: 0.7rem;
+        }
+
+        .input-container2 .option .xi-radiobox-blank {
+          margin-right: 0.2rem;
+        }
+
+        .input-container2 .option .xi-radiobox-checked {
+          margin-right: 0.2rem
+        }
+
+        #name {
+          font-size: 98%;
+          padding-left: 1rem;
+          padding-top: 1.1rem;
+          padding-bottom: 1.1rem;
+          width: 100%;
+          margin-bottom: 0.7rem;
+        }
+
+        #name::placeholder {
+          font-size: 98%;
+        }
+
+
+        .warningMessage {
+          font-size: 90%;
+          text-indent: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .warningMessage_printcode1 {
+          font-size: 90%;
+          text-indent: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .warningMessage_printcode2 {
+          font-size: 90%;
+          text-indent: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+        .phonefield {
+          margin-bottom: -0.5rem;
+        }
+
+        #phone1,
+        #phone2,
+        #phone3 {
+          font-size: 98%;
+          width: 100%;
+        }
+
+        #email {
+          font-size: 98%;
+          padding-left: 1rem;
+          padding-top: 1.1rem;
+          padding-bottom: 1.1rem;
+          width: 100%;
+          margin-bottom: 0.7rem;
+        }
+
+        #email::placeholder {
+          font-size: 98%;
+        }
+
+        .xi-toggle-on {
+          font-size: 180%;
+          padding-right: 0.5rem;
+          transform-origin: 40% 40%;
+        }
+
+        .print_code {
+          font-size: 98%;
+          padding-left: 1rem;
+          padding-top: 1.1rem;
+          padding-bottom: 1.1rem;
+          width: 100%;
+          margin-bottom: 0.7rem;
+        }
+
+        .print_code::placeholder {
+          font-size: 98%;
+        }
+
+        .dropdown {
+          width: 100%;
+          padding-top: 1.1rem;
+          padding-bottom: 1.1rem;
+          font-size: 100%;
+          padding-left: 1rem;
+          margin-bottom: 0.7rem;
+        }
+
+        .dropdown:after {
+          right: 1.5rem;
+          top: 1.5rem;
+          border-width: 4px;
+        }
+
+        .active:after {
+          border-width: 4px;
+          top: 1.3rem;
+        }
+
+        .dropdown-list {
+          width: 100%;
+          font-size: 100%;
+          border-radius: 5px;
+        }
+
+        .dropdown-list li {
+          padding-top: 1.1rem;
+          padding-bottom: 1.1rem;
+          font-size: 105%;
+          font-weight: 500;
+          padding-left: 1rem;
+        }
+
+        .page {
+          width: 100%;
+          padding-top: 1.1rem;
+          padding-bottom: 1.1rem;
+          font-size: 100%;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          margin-bottom: 0.7rem;
+        }
+
+        .counter {
+          margin-right: 0.2rem;        
+        }
+
+        .page_count {
+          margin: 0 1rem;
+        }
+
+        .print {
+          width: 100%;
+          padding-top: 1.1rem;
+          padding-bottom: 1.1rem;
+          font-size: 100%;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          margin-bottom: 0.7rem;
+        }
+
+        .xi-minus-circle {
+          padding: 3%;
+        }
+
+        .xi-plus-circle {
+          margin-right: 0.7rem;
+          padding: 3%;
+        }
+
+        .print_count {
+          margin: 0 1rem;
+        }
+
+        .code_sumbox {
+          width: 100%;
+          font-size: 100%;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          margin-bottom: 0.7rem;
+          padding-top: 0.6rem;
+          padding-bottom: 0.6rem;
+        }
+
+        .codeprice_sum,
+        .codepage_sum {
+          font-size: 100%;
+        }
+
+        .bottom{
+          width: 500px;
+          height: 120px;
+        }
+
+        .bottom_topline{
+          font-size: 98%;
+        }
+
+        .bottom_bottomline{
+          margin-bottom: 0;
+          margin-left: 1.5rem;
+          margin-right: 1.5rem;
+        }
+
+        #final_confirm_btn:disabled{
+          width: 100%;
+          padding-top: 1.1rem;
+          padding-bottom: 1.1rem;
+          font-size: 110%;
+          margin-bottom: 0.7rem;
+        }
+
+        #final_confirm_btn:enabled{
+          width: 100%;
+          padding-top: 1.1rem;
+          padding-bottom: 1.1rem;
+          font-size: 110%;
+          border-radius: 5px;
+          margin-bottom: 0.7rem;
+        }
+
+      #pop {
+        width: 100%;
+        height: 100%;
+      }
+
+      #pop .message {
+        width: 440px;
+        height: 220px;
+        top: 50%;
+        left: 50%;
+        right: 50%;
+      }
+
+      .message .pop_content {
+        width: 100%; 
+        height: 100%;    
+      }
+
+      .notification_area{
+        margin-top: 3rem;
+        width: 100%;
+        line-height: 2rem;
+      }
+
+      .button_area{
+        width: 100%;
+      }
+
+      #cancel_btn, #checked_btn{
+        width: 100%;
+        height: 65px;
+        font-size: 98%;
+      }
+
+      #pop2 {
+        top: 0;
+        height: 100%;
+        width: 500px;
+      }
+
+      .image {
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        margin-bottom: 2rem;
+      }
+
+      .bold2 {
+        font-size: 100%;
+        line-height: 2.5rem;
+      }
+      .medium2 {
+        font-size: 90%;
+        line-height: 1.5rem;
+      }
+
+      .button_area2 {
+        width: 60%;
+        margin: 3rem;
+      }
+
+      #gohome_btn {
+        width: 100%;
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 110%;
+        margin-bottom: 0.7rem;
+      }
+
+      #pop3 {
+        width: 100%;
+        height: 100%;
+      }
+
+      #pop3 .message {
+        width: 440px;
+        height: 220px;
+        top: 50%;
+        left: 50%;
+        right: 50%;
+      }
+
+      #cancel_btn2{
+        width: 100%;
+        height: 65px;
+        font-size: 98%;
+      }
+      .notification_area{
+        width: 80%;
+        height: 50%;
+        margin-top: 2.5rem;
+      }
+
+      .bold3{
+        font-size: 100%;
+        line-height: 1.5rem;
+      } */
+
+      .container {
+        padding-bottom: 16px; /* 100px / 1.35 */
+        margin-top: 59.26px; /* 80px / 1.35 */
+        padding-top: 15px; /* 15px / 1.35 */
+        width: 370px; /* 500px / 1.35 */
+      }
+
+      .top {
+        width: 370px; /* 500px / 1.35 */
+        height: 75px; /* 90px / 1.35 */
+      }
+
+      .top_line h1 {
+        margin-left: 1.11rem; /* 1.5rem / 1.35 */
+      }
+
+      .top_line .xi-refresh {
+        margin-right: 1.11rem; /* 1.5rem / 1.35 */
+      }
+
+      .top .tab_bar {
+        margin-left: 1.19rem; /* 1.6rem / 1.35 */
+        height: 22.22px; /* 30px / 1.35 */
+        margin-top: 1.11rem; /*1.5rem / 1.35*/
+      }
+
+      .top .tab_bar label {
+        font-size: 85%;
+        width: 50%;
+        padding-bottom: 1.7rem;
+      }
+      .main {
+        margin-top: 0.74px; /* 1px / 1.35 */
+      }
+
+      #title1,
+      #title2 {
+        padding-top: 14.81px; /* 20px / 1.35 */
+        padding-bottom: 14.81px; /* 20px / 1.35 */
+        margin-bottom: 0.7rem; /* 1rem / 1.35 */
+      }
+
+      #title2 {
+        margin-top: 2rem; /* 2rem / 1.35 */
+      }
+
+      .smallnum_list {
+        padding-left: 0.37rem; /* 0.5rem / 1.35 */
+        padding-right: 0.37rem; /* 0.5rem / 1.35 */
+        margin-bottom: 1rem; /* 1rem / 1.35 */
+        margin-top: 0.3rem; /* 0.3rem / 1.35 */
+      }
+
+      .smallnum_list p {
+        margin-top: -0.1rem; /* -0.1rem / 1.35 */
+        margin-bottom: -0.1rem; /* -0.1rem / 1.35 */
+      }
+
+      #break_point {
+        height: 0.74rem; /* 1rem / 1.35 */
+      }
+
+      #example_img {
+        margin-bottom: 0.5rem; /* 0.5rem / 1.35 */
+      }
+
+      #price_img {
+        margin-bottom: 0.5rem; /* 0.5rem / 1.35 */
+      }
+
+      .input-container {
+        margin-bottom: 1.48rem; /* 2rem / 1.35 */
+      }
+
+      .bold {
+        text-indent: 0.37rem; /* 0.5rem / 1.35 */
+        margin-bottom: -0.2rem;
+      }
+
+      .star {
+        text-indent: 0.07rem; /* 0.1rem / 1.35 */
+      }
+
+      .medium {
+        text-indent: 0.37rem; /* 0.5rem / 1.35 */
+        margin-bottom: 0.3rem; /* 0.5rem / 1.35 */
+      }
+
+      .input-container2 .option {
+        padding-left: 0.74rem; /* 1rem / 1.35 */
+        padding-top: 0.81rem; /* 1.1rem / 1.35 */
+        padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+        margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+      }
+
+      .input-container2 .option .xi-radiobox-blank {
+        margin-right: 0.15rem; /* 0.2rem / 1.35 */
+      }
+
+      .input-container2 .option .xi-radiobox-checked {
+        margin-right: 0.15rem; /* 0.2rem / 1.35 */
+      }
+
+      #name {
+        padding-left: 0.74rem; /* 1rem / 1.35 */
+        padding-top: 0.81rem; /* 1.1rem / 1.35 */
+        padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+        margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+      }
+
+      .warningMessage {
+        text-indent: 0.37rem; /* 0.5rem / 1.35 */
+        margin-bottom: 0.37rem; /* 0.5rem / 1.35 */
+      }
+
+      .warningMessage_printcode1 {
+        font-size: 66.67%; /* 90% / 1.35 */
+        text-indent: 0.37rem; /* 0.5rem / 1.35 */
+        margin-bottom: 0.37rem; /* 0.5rem / 1.35 */
+      }
+
+      .warningMessage_printcode2 {
+        text-indent: 0.37rem; /* 0.5rem / 1.35 */
+        margin-bottom: 0.37rem; /* 0.5rem / 1.35 */
+      }
+
+      .phonefield {
+        margin-bottom: -0.37rem; /* -0.5rem / 1.35 */
+      }
+
+      #email {
+        padding-left: 0.74rem; /* 1rem / 1.35 */
+        padding-top: 0.81rem; /* 1.1rem / 1.35 */
+        padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+        margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+      }
+
+      .xi-toggle-on {
+        padding-right: 0.37rem; /* 0.5rem / 1.35 */
+        transform-origin: 40% 40%; /* 40% / 1.35 */
+      }
+
+      .print_code {
+        padding-left: 0.74rem; /* 1rem / 1.35 */
+        padding-top: 0.81rem; /* 1.1rem / 1.35 */
+        padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+        margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+      }
+
+      .dropdown {
+        padding-top: 0.81rem; /* 1.1rem / 1.35 */
+        padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+        padding-left: 0.74rem; /* 1rem / 1.35 */
+        margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+      }
+
+      .dropdown:after {
+        right: 1.11rem; /* 1.5rem / 1.35 */
+        top: 1.3rem; /* 1.5rem / 1.35 */
+        border-width: 4px; /* 4px / 1.35 */
+      }
+
+      .active:after {
+        border-width: 4px; /* 4px / 1.35 */
+        top: 0.96rem; /* 1.3rem / 1.35 */
+      }
+
+      .dropdown-list li {
+        padding-top: 0.81rem; /* 1.1rem / 1.35 */
+        padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+        padding-left: 0.74rem; /* 1rem / 1.35 */
+      }
+
+      .page {
+        padding-top: 0.81rem; /* 1.1rem / 1.35 */
+        padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+        padding-left: 0.74rem; /* 1rem / 1.35 */
+        padding-right: 0.74rem; /* 1rem / 1.35 */
+        margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+      }
+
+      .counter {
+        margin-right: 0.15rem; /* 0.2rem / 1.35 */      
+      }
+
+      .page_count {
+        margin: 0 0.74rem; /* 1rem / 1.35 */
+      }
+
+      .print {
+        padding-top: 0.81rem; /* 1.1rem / 1.35 */
+        padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+        padding-left: 0.74rem; /* 1rem / 1.35 */
+        padding-right: 0.74rem; /* 1rem / 1.35 */
+        margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+      }
+
+      .xi-minus-circle {
+        padding: 2.22%; /* 3% / 1.35 */
+      }
+
+      .xi-plus-circle {
+        margin-right: 0.52rem; /* 0.7rem / 1.35 */
+        padding: 2.22%; /* 3% / 1.35 */
+      }
+
+      .print_count {
+        margin: 0 0.74rem; /* 1rem / 1.35 */
+      }
+
+      .code_sumbox {
+        padding-left: 0.74rem; /* 1rem / 1.35 */
+        padding-right: 0.74rem; /* 1rem / 1.35 */
+        margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+        padding-top: 0.44rem; /* 0.6rem / 1.35 */
+        padding-bottom: 0.44rem; /* 0.6rem / 1.35 */
+      }
+
+      .bottom {
+        width: 370px; /* 500px / 1.35 */
+        height: 110px; /* 120px / 1.35 */
+        position: relative;
+      }
+
+      .bottom_topline{
+        margin-bottom: -0.3rem;
+        font-size: 90%;
+      }
+
+      .bottom_bottomline {
+        margin-left: 1.11rem; /* 1.5rem / 1.35 */
+        margin-right: 1.11rem; /* 1.5rem / 1.35 */
+      }
+
+      #final_confirm_btn:disabled {
+        padding-top: 0.81rem; /* 1.1rem / 1.35 */
+        padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+        margin-bottom: 0.7rem; /* 0.7rem / 1.35 */
+      }
+
+      #final_confirm_btn:enabled {
+        padding-top: 0.81rem; /* 1.1rem / 1.35 */
+        padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+        margin-bottom: 0.7rem; /* 0.7rem / 1.35 */
+      }
+
+      #pop .message {
+        width: 326.67px; /* 440px / 1.35 */
+        height: 220px; /* 220px / 1.35 */
+      }
+
+      .notification_area {
+        margin-top: 2.22rem; /* 3rem / 1.35 */
+      }
+
+      #cancel_btn,
+      #checked_btn {
+        height: 65px; /* 65px / 1.35 */
+      }
+
+      #pop2 {
+        width: 370px; /* 500px / 1.35 */
+      }
+
+      .image {
+        width: 150px; /* 150px / 1.35 */
+        height: 150px; /* 150px / 1.35 */
+        margin-bottom: 1.48rem; /* 2rem / 1.35 */
+      }
+
+      .button_area2 {
+        margin: 2.22rem; /* 3rem / 1.35 */
+      }
+
+      #gohome_btn {
+        padding-top: 0.81rem; /* 1.1rem / 1.35 */
+        padding-bottom: 0.81rem; /* 1.1rem / 1.35 */
+        margin-bottom: 0.52rem; /* 0.7rem / 1.35 */
+      }
+
+      #pop3 .message {
+        width: 326.67px; /* 440px / 1.35 */
+        height: 220px; /* 220px / 1.35 */
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <!-- <div class="top_line">
+          <h1 onclick="goHomePage()" style="cursor: pointer">
+            <div class="red">IM</div>
+            <div class="black">:EASY</div>
+          </h1>
+          <i
+            class="xi-refresh"
+            onclick="refreshPage();"
+            style="cursor: pointer"
+          ></i>
+        </div> -->
+        <br />
+        <div class="tab_bar">
+          <input type="radio" name="tabs" id="tab1" checked />
+          <label for="tab1" id="label1">신청서 작성</label>
+          <input type="radio" name="tabs" id="tab2" />
+          <label for="tab2" id="label2">작성방법</label>
+          <input type="radio" name="tabs" id="tab3" />
+          <label for="tab3" id="label3">가격표</label>
+        </div>
+      </div>
+      <div class="main">
+        <div id="content1" class="tab-content tab1">
+          <div class="person_content1">
+            <div class="sender_info">
+              <div id="title1">주문자 정보</div>
+              <div class="input-container">
+                <div class="bold">
+                  주문방법
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">
+                  알림톡 수신이 어려운 경우 이메일을 선택해주세요.
+                </div>
+                <div class="input-container2">
+                  <label for="kakao_noti" class="option kakao_noti" id="noti1">
+                    <input
+                      type="radio"
+                      name="select1"
+                      id="kakao_noti"
+                      value="전화번호(카카오 알림톡)"
+                      onclick="checkOnlyOne(this)"
+                      checked
+                    />
+                    <i class="xi-radiobox-blank" id="nokakao" style="display: none;"></i>
+                    <i class="xi-radiobox-checked" id="yeskakao"></i>
+                    <span>전화번호(카카오 알림톡)</span>
+                  </label>
+                  <label for="email_noti" class="option email_noti" id="noti2">
+                    <input
+                      type="radio"
+                      name="select1"
+                      id="email_noti"
+                      value="이메일"
+                      onclick="checkOnlyOne(this)"
+                    />
+                    <i class="xi-radiobox-blank" id="noemail"></i>
+                    <i class="xi-radiobox-checked" id="yesemail" style="display: none"></i>
+                    <span>이메일</span>
+                  </label>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="bold">
+                  이름
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">
+                  전화번호(또는 이메일)과 함께 ID 식별에 사용됩니다.
+                </div>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="이름을 입력하세요."
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='이름을 입력하세요.'"
+                />
+                <div class="warningMessage" id="warning1" style="display: none">
+                  2글자 이상 입력하세요.
+                </div>
+              </div>
+              <div class="input-container" id="showphone">
+                <div class="bold">
+                  전화번호
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">
+                  입력하신 전화번호로 결제요청 알림톡이 발송됩니다.
+                </div>
+                <div class="phonefield">
+                  <input type="text" id="phone1" value="010" readonly />
+                  <p>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</p>
+                  <input
+                    type="number"
+                    id="phone2"
+                    oninput="handleOnInput(this,4)"
+                    min="0"
+                    max="9999"
+                    onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  />
+                  <p>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</p>
+                  <input
+                    type="number"
+                    id="phone3"
+                    oninput="handleOnInput(this,4)"
+                    min="0"
+                    max="9999"
+                    onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  />
+                </div>
+                <br />
+                <div class="warningMessage" id="warning2" style="display: none">
+                  올바른 전화번호를 입력해주세요.
+                </div>
+              </div>
+              <div class="input-container" id="showemail" style="display: none">
+                <div class="bold">
+                  이메일
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">
+                  입력하신 이메일로 결제요청 메일이 발송됩니다.
+                </div>
+                <input
+                  type="text"
+                  id="email"
+                  placeholder="이메일(소문자)을 입력하세요."
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='이메일(소문자)을 입력하세요.'"
+                />
+                <div class="warningMessage" id="warning3" style="display: none">
+                  올바른 이메일을 입력하세요.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="break_point"></div>
+          <div class="code_content1">
+            <div class="code_info">
+              <div id="title2">코드 정보</div>
+              <div class="input-container">
+                <div class="bold">
+                  인증사진 여부
+                  <div class="star">*</div>
+                </div>
+                <div class="medium">
+                  출력된 사진의 인증사진을 촬영해드립니다.
+                </div>
+                <div class="input-container2">
+                  <label for="photo1" class="option photo1" id="picture1">
+                    <input
+                      type="radio"
+                      name="select2"
+                      id="photo1"
+                      value="예 (+500원)"
+                      onclick="checkOnlyOne(this)"
+                    />
+                    <i class="xi-radiobox-blank" id="nophoto1"></i>
+                    <i class="xi-radiobox-checked" id="yesphoto1" style="display: none"></i>
+                    <span>예 (+500원)</span>
+                  </label>
+                  <label for="photo2" class="option photo2" id="picture2">
+                    <input
+                      type="radio"
+                      name="select2"
+                      id="photo2"
+                      value="아니오"
+                      onclick="checkOnlyOne(this)"
+                      checked
+                    />
+                    <i class="xi-radiobox-blank" id="nophoto2" style="display: none"></i>
+                    <i class="xi-radiobox-checked" id="yesphoto2"></i>
+                    <span>아니오</span>
+                  </label>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="code_toggle">
+                  <div class="bold">
+                    코드 1
+                    <div class="star">*</div>
+                  </div>
+                  <i class="xi-toggle-on" style="display: none;"></i>
+                </div>
+                <div class="medium">
+                    (8월) 출력횟수 당, 100원 이벤트 중입니다.
+                </div>
+                <input
+                  type="number"
+                  placeholder="인쇄코드"
+                  oninput="handleOnInput(this,7)"
+                  min="0"
+                  max="9999999"
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='인쇄코드'"
+                  onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  class="print_code"
+                />
+                <div class="warningMessage_printcode1" style="display: none">
+                  7자리 숫자를 입력해주세요.
+                </div>
+                <div class="warningMessage_printcode2" style="display: none">
+                  숫자 9로 시작하는 골드번호는 출력하실 수 없습니다.
+                </div>
+                <div class="dropdown" tabindex="0">상품명(사이즈)</div>
+                <ul class="dropdown-list">
+                  <li class="option1">일반사진, 2분할사진, 4분할사진 (4x6)</li>
+                  <li class="option2">일반사진, 2분할사진, 4분할사진 (6x8)</li>
+                  <li class="option3">증명사진, 반명함사진, 여권사진 (4x6)</li>
+                  <li class="option4">증명사진, 반명함사진, 여권사진 (6x8)</li>
+                </ul>
+                <div class="page" tabindex="0">
+                  <div class="page_title">페이지수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="page_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="print" tabindex="0">
+                  <div class="print_title">출력횟수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="print_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="code_sumbox">
+                  <p>
+                    <div class="codeprice_sum" id="codeprice_sum1">0</div>원 
+                    (<div class="codepage_sum" id="codepage_sum1">0</div>장)
+                  </p>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="code_toggle">
+                  <div class="bold">
+                    코드 2
+                  </div>
+                  <i class="xi-toggle-on"></i>
+                </div>
+                <input
+                  type="number"
+                  placeholder="인쇄코드"
+                  oninput="handleOnInput(this,7)"
+                  min="0"
+                  max="9999999"
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='인쇄코드'"
+                  onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  class="print_code"
+                />
+                <div class="warningMessage_printcode1" style="display: none">
+                  7자리 숫자를 입력해주세요.
+                </div>
+                <div class="warningMessage_printcode2" style="display: none">
+                  숫자 9로 시작하는 골드번호는 출력하실 수 없습니다.
+                </div>
+                <div class="dropdown" tabindex="0">상품명(사이즈)</div>
+                <ul class="dropdown-list">
+                  <li class="option1">일반사진, 2분할사진, 4분할사진 (4x6)</li>
+                  <li class="option2">일반사진, 2분할사진, 4분할사진 (6x8)</li>
+                  <li class="option3">증명사진, 반명함사진, 여권사진 (4x6)</li>
+                  <li class="option4">증명사진, 반명함사진, 여권사진 (6x8)</li>
+                </ul>
+                <div class="page" tabindex="0">
+                  <div class="page_title">페이지수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="page_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="print" tabindex="0">
+                  <div class="print_title">출력횟수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="print_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="code_sumbox">
+                  <p>
+                    <div class="codeprice_sum" id="codeprice_sum1">0</div>원 
+                    (<div class="codepage_sum" id="codepage_sum1">0</div>장)
+                  </p>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="code_toggle">
+                  <div class="bold">
+                    코드 3
+                  </div>
+                  <i class="xi-toggle-on"></i>
+                </div>
+                <input
+                  type="number"
+                  placeholder="인쇄코드"
+                  oninput="handleOnInput(this,7)"
+                  min="0"
+                  max="9999999"
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='인쇄코드'"
+                  onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  class="print_code"
+                />
+                <div class="warningMessage_printcode1" style="display: none">
+                  7자리 숫자를 입력해주세요.
+                </div>
+                <div class="warningMessage_printcode2" style="display: none">
+                  숫자 9로 시작하는 골드번호는 출력하실 수 없습니다.
+                </div>
+                <div class="dropdown" tabindex="0">상품명(사이즈)</div>
+                <ul class="dropdown-list">
+                  <li class="option1">일반사진, 2분할사진, 4분할사진 (4x6)</li>
+                  <li class="option2">일반사진, 2분할사진, 4분할사진 (6x8)</li>
+                  <li class="option3">증명사진, 반명함사진, 여권사진 (4x6)</li>
+                  <li class="option4">증명사진, 반명함사진, 여권사진 (6x8)</li>
+                </ul>
+                <div class="page" tabindex="0">
+                  <div class="page_title">페이지수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="page_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="print" tabindex="0">
+                  <div class="print_title">출력횟수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="print_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="code_sumbox">
+                  <p>
+                    <div class="codeprice_sum" id="codeprice_sum1">0</div>원 
+                    (<div class="codepage_sum" id="codepage_sum1">0</div>장)
+                  </p>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="code_toggle">
+                  <div class="bold">
+                    코드 4
+                  </div>
+                  <i class="xi-toggle-on"></i>
+                </div>
+                <input
+                  type="number"
+                  placeholder="인쇄코드"
+                  oninput="handleOnInput(this,7)"
+                  min="0"
+                  max="9999999"
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='인쇄코드'"
+                  onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  class="print_code"
+                />
+                <div class="warningMessage_printcode1" style="display: none">
+                  7자리 숫자를 입력해주세요.
+                </div>
+                <div class="warningMessage_printcode2" style="display: none">
+                  숫자 9로 시작하는 골드번호는 출력하실 수 없습니다.
+                </div>
+                <div class="dropdown" tabindex="0">상품명(사이즈)</div>
+                <ul class="dropdown-list">
+                  <li class="option1">일반사진, 2분할사진, 4분할사진 (4x6)</li>
+                  <li class="option2">일반사진, 2분할사진, 4분할사진 (6x8)</li>
+                  <li class="option3">증명사진, 반명함사진, 여권사진 (4x6)</li>
+                  <li class="option4">증명사진, 반명함사진, 여권사진 (6x8)</li>
+                </ul>
+                <div class="page" tabindex="0">
+                  <div class="page_title">페이지수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="page_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="print" tabindex="0">
+                  <div class="print_title">출력횟수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="print_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="code_sumbox">
+                  <p>
+                    <div class="codeprice_sum" id="codeprice_sum1">0</div>원 
+                    (<div class="codepage_sum" id="codepage_sum1">0</div>장)
+                  </p>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="code_toggle">
+                  <div class="bold">
+                    코드 5
+                  </div>
+                  <i class="xi-toggle-on"></i>
+                </div>
+                <input
+                  type="number"
+                  placeholder="인쇄코드"
+                  oninput="handleOnInput(this,7)"
+                  min="0"
+                  max="9999999"
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='인쇄코드'"
+                  onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  class="print_code"
+                />
+                <div class="warningMessage_printcode1" style="display: none">
+                  7자리 숫자를 입력해주세요.
+                </div>
+                <div class="warningMessage_printcode2" style="display: none">
+                  숫자 9로 시작하는 골드번호는 출력하실 수 없습니다.
+                </div>
+                <div class="dropdown" tabindex="0">상품명(사이즈)</div>
+                <ul class="dropdown-list">
+                  <li class="option1">일반사진, 2분할사진, 4분할사진 (4x6)</li>
+                  <li class="option2">일반사진, 2분할사진, 4분할사진 (6x8)</li>
+                  <li class="option3">증명사진, 반명함사진, 여권사진 (4x6)</li>
+                  <li class="option4">증명사진, 반명함사진, 여권사진 (6x8)</li>
+                </ul>
+                <div class="page" tabindex="0">
+                  <div class="page_title">페이지수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="page_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="print" tabindex="0">
+                  <div class="print_title">출력횟수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="print_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="code_sumbox">
+                  <p>
+                    <div class="codeprice_sum" id="codeprice_sum1">0</div>원 
+                    (<div class="codepage_sum" id="codepage_sum1">0</div>장)
+                  </p>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="code_toggle">
+                  <div class="bold">
+                    코드 6
+                  </div>
+                  <i class="xi-toggle-on"></i>
+                </div>
+                <input
+                  type="number"
+                  placeholder="인쇄코드"
+                  oninput="handleOnInput(this,7)"
+                  min="0"
+                  max="9999999"
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='인쇄코드'"
+                  onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  class="print_code"
+                />
+                <div class="warningMessage_printcode1" style="display: none">
+                  7자리 숫자를 입력해주세요.
+                </div>
+                <div class="warningMessage_printcode2" style="display: none">
+                  숫자 9로 시작하는 골드번호는 출력하실 수 없습니다.
+                </div>
+                <div class="dropdown" tabindex="0">상품명(사이즈)</div>
+                <ul class="dropdown-list">
+                  <li class="option1">일반사진, 2분할사진, 4분할사진 (4x6)</li>
+                  <li class="option2">일반사진, 2분할사진, 4분할사진 (6x8)</li>
+                  <li class="option3">증명사진, 반명함사진, 여권사진 (4x6)</li>
+                  <li class="option4">증명사진, 반명함사진, 여권사진 (6x8)</li>
+                </ul>
+                <div class="page" tabindex="0">
+                  <div class="page_title">페이지수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="page_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="print" tabindex="0">
+                  <div class="print_title">출력횟수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="print_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="code_sumbox">
+                  <p>
+                    <div class="codeprice_sum" id="codeprice_sum1">0</div>원 
+                    (<div class="codepage_sum" id="codepage_sum1">0</div>장)
+                  </p>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="code_toggle">
+                  <div class="bold">
+                    코드 7
+                  </div>
+                  <i class="xi-toggle-on"></i>
+                </div>
+                <input
+                  type="number"
+                  placeholder="인쇄코드"
+                  oninput="handleOnInput(this,7)"
+                  min="0"
+                  max="9999999"
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='인쇄코드'"
+                  onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  class="print_code"
+                />
+                <div class="warningMessage_printcode1" style="display: none">
+                  7자리 숫자를 입력해주세요.
+                </div>
+                <div class="warningMessage_printcode2" style="display: none">
+                  숫자 9로 시작하는 골드번호는 출력하실 수 없습니다.
+                </div>
+                <div class="dropdown" tabindex="0">상품명(사이즈)</div>
+                <ul class="dropdown-list">
+                  <li class="option1">일반사진, 2분할사진, 4분할사진 (4x6)</li>
+                  <li class="option2">일반사진, 2분할사진, 4분할사진 (6x8)</li>
+                  <li class="option3">증명사진, 반명함사진, 여권사진 (4x6)</li>
+                  <li class="option4">증명사진, 반명함사진, 여권사진 (6x8)</li>
+                </ul>
+                <div class="page" tabindex="0">
+                  <div class="page_title">페이지수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="page_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="print" tabindex="0">
+                  <div class="print_title">출력횟수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="print_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="code_sumbox">
+                  <p>
+                    <div class="codeprice_sum" id="codeprice_sum1">0</div>원 
+                    (<div class="codepage_sum" id="codepage_sum1">0</div>장)
+                  </p>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="code_toggle">
+                  <div class="bold">
+                    코드 8
+                  </div>
+                  <i class="xi-toggle-on"></i>
+                </div>
+                <input
+                  type="number"
+                  placeholder="인쇄코드"
+                  oninput="handleOnInput(this,7)"
+                  min="0"
+                  max="9999999"
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='인쇄코드'"
+                  onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  class="print_code"
+                />
+                <div class="warningMessage_printcode1" style="display: none">
+                  7자리 숫자를 입력해주세요.
+                </div>
+                <div class="warningMessage_printcode2" style="display: none">
+                  숫자 9로 시작하는 골드번호는 출력하실 수 없습니다.
+                </div>
+                <div class="dropdown" tabindex="0">상품명(사이즈)</div>
+                <ul class="dropdown-list">
+                  <li class="option1">일반사진, 2분할사진, 4분할사진 (4x6)</li>
+                  <li class="option2">일반사진, 2분할사진, 4분할사진 (6x8)</li>
+                  <li class="option3">증명사진, 반명함사진, 여권사진 (4x6)</li>
+                  <li class="option4">증명사진, 반명함사진, 여권사진 (6x8)</li>
+                </ul>
+                <div class="page" tabindex="0">
+                  <div class="page_title">페이지수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="page_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="print" tabindex="0">
+                  <div class="print_title">출력횟수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="print_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="code_sumbox">
+                  <p>
+                    <div class="codeprice_sum" id="codeprice_sum1">0</div>원 
+                    (<div class="codepage_sum" id="codepage_sum1">0</div>장)
+                  </p>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="code_toggle">
+                  <div class="bold">
+                    코드 9
+                  </div>
+                  <i class="xi-toggle-on"></i>
+                </div>
+                <input
+                  type="number"
+                  placeholder="인쇄코드"
+                  oninput="handleOnInput(this,7)"
+                  min="0"
+                  max="9999999"
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='인쇄코드'"
+                  onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  class="print_code"
+                />
+                <div class="warningMessage_printcode1" style="display: none">
+                  7자리 숫자를 입력해주세요.
+                </div>
+                <div class="warningMessage_printcode2" style="display: none">
+                  숫자 9로 시작하는 골드번호는 출력하실 수 없습니다.
+                </div>
+                <div class="dropdown" tabindex="0">상품명(사이즈)</div>
+                <ul class="dropdown-list">
+                  <li class="option1">일반사진, 2분할사진, 4분할사진 (4x6)</li>
+                  <li class="option2">일반사진, 2분할사진, 4분할사진 (6x8)</li>
+                  <li class="option3">증명사진, 반명함사진, 여권사진 (4x6)</li>
+                  <li class="option4">증명사진, 반명함사진, 여권사진 (6x8)</li>
+                </ul>
+                <div class="page" tabindex="0">
+                  <div class="page_title">페이지수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="page_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="print" tabindex="0">
+                  <div class="print_title">출력횟수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="print_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="code_sumbox">
+                  <p>
+                    <div class="codeprice_sum" id="codeprice_sum1">0</div>원 
+                    (<div class="codepage_sum" id="codepage_sum1">0</div>장)
+                  </p>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="code_toggle">
+                  <div class="bold">
+                    코드 10
+                  </div>
+                  <i class="xi-toggle-on"></i>
+                </div>
+                <input
+                  type="number"
+                  placeholder="인쇄코드"
+                  oninput="handleOnInput(this,7)"
+                  min="0"
+                  max="9999999"
+                  onfocus="this.placeholder=''"
+                  onblur="this.placeholder='인쇄코드'"
+                  onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                  class="print_code"
+                />
+                <div class="warningMessage_printcode1" style="display: none">
+                  7자리 숫자를 입력해주세요.
+                </div>
+                <div class="warningMessage_printcode2" style="display: none">
+                  숫자 9로 시작하는 골드번호는 출력하실 수 없습니다.
+                </div>
+                <div class="dropdown" tabindex="0">상품명(사이즈)</div>
+                <ul class="dropdown-list">
+                  <li class="option1">일반사진, 2분할사진, 4분할사진 (4x6)</li>
+                  <li class="option2">일반사진, 2분할사진, 4분할사진 (6x8)</li>
+                  <li class="option3">증명사진, 반명함사진, 여권사진 (4x6)</li>
+                  <li class="option4">증명사진, 반명함사진, 여권사진 (6x8)</li>
+                </ul>
+                <div class="page" tabindex="0">
+                  <div class="page_title">페이지수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="page_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="print" tabindex="0">
+                  <div class="print_title">출력횟수</div>
+                  <div class="counter">
+                    <i class="xi-minus-circle"></i
+                    ><input
+                      type="number"
+                      oninput="handleOnInput(this,4)"
+                      value="0"
+                      min="0"
+                      max="1000"
+                      onkeydown="javascript: return event.keyCode == 69 ? false : true"
+                      class="print_count"
+                    />
+                    <i class="xi-plus-circle"></i>
+                  </div>
+                </div>
+                <div class="code_sumbox">
+                  <p>
+                    <div class="codeprice_sum" id="codeprice_sum1">0</div>원 
+                    (<div class="codepage_sum" id="codepage_sum1">0</div>장)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="bottom_topline">
+              <p>
+                전체&nbsp;<div id="total_sum">0</div>원 (<div id="total_pages">0</div>장)
+              </p>
+            </div>
+            <div class="bottom_bottomline">
+              <button id="final_confirm_btn" disabled>제출하기</button>
+            </div>
+          </div>
+        </div>
+        <div id="content2" class="tab-content tab2">
+          <div class="main_content2">
+            <div class="discription">
+              <div id="title1">코드 정보</div>
+              <ol class="smallnum_list">
+                <li class="smallnum">
+                  <p>① <span class="red">인쇄코드</span></p>
+                </li>
+                <li class="smallnum">
+                  <p>작가님이 공유해주신 코드입니다.</p>
+                </li>
+                <li class="smallnum">
+                  <p>② <span class="red">상품명(사이즈)</span></p>
+                </li>
+                <li class="smallnum">
+                  <p>'일반사진 4x6' 같은 상품명(사이즈)입니다.</p>
+                </li>
+                <li class="smallnum">
+                  <p>③ <span class="red">페이지수</span></p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    작가님이 한 개의 인쇄코드에 업로드하신 이미지의 개수입니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter"> * 보통 한 개의 인쇄코드에 하나의 이미지를 업로드하시지만, 그렇지 않은 경우도 많으니 유의해주세요.</span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>④ <span class="red">출력횟수</span></p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    고객님께서 한 개의 인쇄코드를 몇 회 반복 출력하실 것인지 그
+                    횟수를 입력하시면 됩니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter"> * 출력횟수에 따라 수고비가 발생합니다.</span>
+                  </p>
+                </li>
+              </ol>
+              <div id="title2">예시</div>
+              <img
+                src="https://ifh.cc/g/sncskn.jpg"
+                alt="예시 이미지"
+                id="example_img"
+              />
+              <ol class="smallnum_list">
+                <li class="smallnum">
+                  <p>① 인쇄코드는 <span class="red">5317290</span> 입니다.</p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ② 상품명(사이즈)를 보니
+                    <span class="red">일반사진 4x6</span> 이네요.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ③ 작가님이 해당 코드로 3장의 이미지를 업로드하셨네요.
+                    페이지수는 <span class="red">3페이지</span> 입니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ④ 해당 코드를 2번 출력하고자 한다면 출력횟수는
+                    <span class="red">2회</span>가 됩니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter"> * 이 경우, 총 6장의 사진이 출력됩니다.</span>
+                  </p>
+                </li>
+              </ol>
+              <div id="title2">기타 주의사항</div>
+              <ol class="smallnum_list">
+                <li class="smallnum">
+                  <p>
+                    ① <span class="red">인쇄부수에 주의하세요.</span> 인쇄부수가 1부가 아닌 경우, 출력횟수를 1회로 요청해도 같은 사진이 여러 장 출력될 수 있습니다.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 인쇄부수란, 인쇄코드를 몇 회 반복 출력할 것인지 작가님이
+                      미리 설정해놓은 값입니다.
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ② 인쇄부수가 2부 이상이라면,
+                    <span class="red">페이지수 = 페이지수 x 인쇄부수</span>로
+                    계산해주세요.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 다만, 아이폰에서는 페이지수가 2페이지면, 인쇄부수가 1부임에도 2부로 보이는 오류가 종종 발생합니다.
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ③ 주문 전에 코드 정보를 정확히 알고 싶으면
+                    <span class="red">카카오톡 채널로 문의해주세요.</span>
+                  </p>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div id="content3" class="tab-content tab3">
+          <div class="main_content3">
+            <div class="discription">
+              <img
+                src="https://ifh.cc/g/Vr7QVF.png"
+                alt="가격표 이미지"
+                id="price_img"
+              />
+              <ol class="smallnum_list">
+                <li class="smallnum">
+                  <p>
+                    ① 수고비는
+                    <span class="red">출력횟수당 200원</span>입니다. 장당
+                    200원이 아니니 참고해주세요.
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    <span class="grey_letter">
+                      * 한 개의 코드에 10장의 이미지가 등록되어 있다면, 1회 출력
+                      요청 시 10장에 대한 수고비는 2,000원이 아니라 200원입니다.
+                    </span>
+                  </p>
+                </li>
+                <li class="smallnum">
+                  <p>
+                    ② <span class="red">인증사진</span>을 선택하시는 경우,
+                    <span class="red">500원</span>의 추가비용이 발생합니다.
+                  </p>
+                </li>
+              </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="pop">
+      <div class="message">
+        <div class="pop_content">
+          <div class="notification_area">
+            <div class="bold">
+              신청서를 제출하시겠습니까?
+            </div>
+            <div class="medium2">
+              제출 후 결제요청 메시지가 발송됩니다.
+            </div>
+            <div class="medium2">
+              (최대 5분)
+            </div>
+          </div>
+          <div class="button_area">
+            <button id="cancel_btn">취소</button>
+            <button id="checked_btn">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="pop2">
+      <div class="image">
+        <img src="https://ifh.cc/g/AGxVjd.png" alt="접수완료이미지" />
+      </div>
+      <div class="text">
+        <div class="bold2">신청서가 정상적으로 제출되었습니다.</div>
+        <div class="medium2">마지막 페이지입니다.</div>
+      </div>
+    </div>
+    <div id="pop3">
+      <div class="message">
+        <div class="pop_content">
+          <div class="notification_area">
+            <div class="bold3">
+              지금은 주문 접수시간이 아닙니다.
+            </div>
+            <div class="medium2">
+              현재 영업 상태를 확인해주세요.
+            </div>
+            <div class="medium2">
+              (홈 화면에서 확인 가능)
+            </div>
+          </div>
+          <div class="button_area">
+            <button id="cancel_btn2">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <script>
+      function refreshPage() {
+        var confirmReload = confirm(
+          "입력하신 내용이 초기화됩니다. 계속하시겠습니까?"
+        );
+
+        if (confirmReload) {
+          location.reload();
+        }
+      }
+
+      // Set default values for input fields and call finalbuttonState()
+      function setDefaultValues() {
+        namefield.value = "";
+        emailfield.value = "";
+        phone2Input.value = "";
+        phone3Input.value = "";
+        order1.checked = true;
+        photo2.checked = true;
+        finalbuttonState();
+      }
+
+      // Add an event listener to the 'DOMContentLoaded' event
+      document.addEventListener("DOMContentLoaded", function () {
+        // Call setDefaultValues() to set default values and update the button state
+        setDefaultValues();
+      });
+
+      // Add an event listener to the 'beforeunload' event
+      window.addEventListener("beforeunload", function () {
+        // Call setDefaultValues() to reset values before leaving the page
+        setDefaultValues();
+      });
+
+      window.onbeforeunload = function () {
+        return "데이터를 새로고침하시겠습니까?";
+      };
+      // Rest of your code here...
+
+      function goHomePage() {
+        var confirmGoHome = confirm(
+          "입력하신 내용이 저장되지 않습니다. 계속하시겠습니까?"
+        );
+
+        if (confirmGoHome) {
+          // phone3Input.value = "";
+          // 필요한 입력 필드의 ID를 가진 요소를 찾아 값을 초기화합니다.
+          window.location.href = "https://mus-imeasy.netlify.app/newpage.html"; // 홈페이지 주소에는 실제 홈페이지 URL을 입력하세요
+        }
+      }
+
+      const tab1 = document.getElementById("tab1");
+      const content1 = document.getElementById("content1");
+      const tab2 = document.getElementById("tab2");
+      const content2 = document.getElementById("content2");
+      const tab3 = document.getElementById("tab3");
+      const content3 = document.getElementById("content3");
+
+      tab1.addEventListener("change", function () {
+        if (tab1.checked) {
+          content2.style.display = "none";
+          content3.style.display = "none";
+          content1.style.display = "inline-flex";
+          //맨 위로 스크롤 이동
+          // content1.scrollIntoView({
+          //   behavior: "smooth",
+          //   block: "start",
+          //   inline: "nearest",
+          // });
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
+
+      tab2.addEventListener("change", function () {
+        if (tab2.checked) {
+          content1.style.display = "none";
+          content3.style.display = "none";
+          content2.style.display = "inline-flex";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
+
+      tab3.addEventListener("change", function () {
+        if (tab3.checked) {
+          content1.style.display = "none";
+          content2.style.display = "none";
+          content3.style.display = "inline-flex";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
+
+      const email = document.getElementById("showemail");
+      const phone = document.getElementById("showphone");
+
+      const emailfield = document.getElementById("email");
+      const phone2Input = document.getElementById("phone2");
+      const phone3Input = document.getElementById("phone3");
+
+      const order1 = document.getElementById("kakao_noti");
+      const order2 = document.getElementById("email_noti");
+      const nokakao = document.getElementById("nokakao");
+      const yeskakao = document.getElementById("yeskakao");
+      const noemail = document.getElementById("noemail");
+      const yesemail = document.getElementById("yesemail");
+      const ordercheck1 = document.getElementById("noti1");
+      const ordercheck2 = document.getElementById("noti2");
+
+      order1.addEventListener("change", function () {
+        if (order1.checked) {
+          nokakao.style.display = "none";
+          yeskakao.style.display = "inline-block";
+          noemail.style.display = "inline-block";
+          yesemail.style.display = "none";
+          ordercheck1.style.color = "#e7404a";
+          ordercheck1.style.backgroundColor = "rgba(253, 236, 237, 1)";
+          ordercheck1.style.borderColor = "#e7404a";
+          ordercheck1.style.fontWeight = "bold";
+          ordercheck2.style.color = "#aaaaaa";
+          ordercheck2.style.backgroundColor = "white";
+          ordercheck2.style.borderColor = "#e6e6e6";
+          ordercheck2.style.fontWeight = "400";
+          phone.style.display = "inline-flex";
+          email.style.display = "none";
+          emailfield.value = "";
+          warning3.style.display = "none";
+          finalbuttonState();
+        }
+      });
+
+      order2.addEventListener("change", function () {
+        if (order2.checked) {
+          yeskakao.style.display = "none";
+          nokakao.style.display = "inline-block";
+          yesemail.style.display = "inline-block";
+          noemail.style.display = "none";
+          ordercheck2.style.color = "#e7404a";
+          ordercheck2.style.backgroundColor = "rgba(253, 236, 237, 1)";
+          ordercheck2.style.borderColor = "#e7404a";
+          ordercheck2.style.fontWeight = "bold";
+          ordercheck1.style.color = "#aaaaaa";
+          ordercheck1.style.backgroundColor = "white";
+          ordercheck1.style.borderColor = "#e6e6e6";
+          ordercheck1.style.fontWeight = "400";
+          phone.style.display = "none";
+          phone2Input.value = "";
+          phone3Input.value = "";
+          email.style.display = "inline-block";
+          warning2.style.display = "none";
+          finalbuttonState();
+        }
+      });
+
+      const namefield = document.getElementById("name");
+      const warning1 = document.getElementById("warning1");
+
+      namefield.addEventListener("input", function () {
+        var inputText = namefield.value.trim();
+
+        if (inputText.length < 2) {
+          warning1.style.display = "inline-block";
+
+        } else {
+          warning1.style.display = "none";
+
+        }
+        finalbuttonState();
+      });
+
+      const numberInputs = document.querySelectorAll('input[type="number"]');
+
+      numberInputs.forEach((numberInput) => {
+        numberInput.addEventListener("keydown", (event) => {
+          const invalidCharacters = ["+", "-", "."];
+          if (invalidCharacters.includes(event.key)) {
+            event.preventDefault();
+          }
+        });
+      });
+
+      const warning2 = document.getElementById("warning2");
+
+      phone2Input.addEventListener("input", function () {
+        const phone2Value = phone2Input.value.trim();
+        const phone3Value = phone3Input.value.trim();
+
+        if (phone2Value.length !== 4 || phone3Value.length !== 4) {
+          warning2.style.display = "inline-block";
+
+        } else {
+          warning2.style.display = "none";
+        }
+        finalbuttonState();
+      });
+
+      phone3Input.addEventListener("input", function () {
+        const phone2Value = phone2Input.value.trim();
+        const phone3Value = phone3Input.value.trim();
+
+        if (phone2Value.length !== 4 || phone3Value.length !== 4) {
+          warning2.style.display = "inline-block";
+  
+        } else {
+          warning2.style.display = "none";
+        }
+        finalbuttonState();
+      });
+
+      function handleOnInput(el, maxlength) {
+        if (el.value.length > maxlength) {
+          el.value = el.value.substr(0, maxlength);
+        }
+      }
+
+      const warning3 = document.getElementById("warning3");
+
+      function check_mail() {
+        var aIndex = emailfield.value.indexOf("@");
+        var dotIndex = emailfield.value.indexOf(".");
+        var len = emailfield.value.length;
+
+        if (
+          aIndex == 0 ||
+          len == dotIndex + 1 ||
+          aIndex == -1 ||
+          dotIndex == -1 ||
+          aIndex >= dotIndex - 1
+        ) {
+          //첫번째 잘못된 경우--> [@]가 처음에 위치하는 경우
+          //두번째 잘못된 경우 --> '.'가 마지막에 위치하는 경우
+          //세번째 --> '@', '.'가 없거나 '@'가 '.' 뒤에 위치하거나 붙어있는 경우
+          return false;
+        } else {
+          return true;
+        }
+      }
+
+      emailfield.addEventListener("input", function () {
+        if (!check_mail()) {
+          warning3.style.display = "inline-block";
+
+        } else {
+          warning3.style.display = "none";
+        }
+        finalbuttonState();
+      });
+
+      /*코드정보 입력 관련 함수*/
+
+      /*인증사진 여부*/
+      const photo1 = document.getElementById("photo1");
+      const photo2 = document.getElementById("photo2");
+      const yesphoto1 = document.getElementById("yesphoto1");
+      const yesphoto2 = document.getElementById("yesphoto2");
+      const nophoto1 = document.getElementById("nophoto1");
+      const nophoto2 = document.getElementById("nophoto2");
+      const picturecheck1 = document.getElementById("picture1");
+      const picturecheck2 = document.getElementById("picture2");
+
+      photo1.addEventListener("change", function () {
+        if (photo1.checked) {
+          nophoto1.style.display = "none";
+          yesphoto1.style.display = "inline-block";
+          nophoto2.style.display = "inline-block";
+          yesphoto2.style.display = "none";
+          picturecheck1.style.color = "#e7404a";
+          picturecheck1.style.backgroundColor = "rgba(253, 236, 237, 1)";
+          picturecheck1.style.borderColor = "#e7404a";
+          picturecheck1.style.fontWeight = "bold";
+          picturecheck2.style.color = "#aaaaaa";
+          picturecheck2.style.backgroundColor = "white";
+          picturecheck2.style.borderColor = "#e6e6e6";
+          picturecheck2.style.fontWeight = "400";
+          updateValues();
+        }
+      });
+
+      photo2.addEventListener("change", function () {
+        if (photo2.checked) {
+          yesphoto1.style.display = "none";
+          nophoto1.style.display = "inline-block";
+          yesphoto2.style.display = "inline-block";
+          nophoto2.style.display = "none";
+          picturecheck2.style.color = "#e7404a";
+          picturecheck2.style.backgroundColor = "rgba(253, 236, 237, 1)";
+          picturecheck2.style.borderColor = "#e7404a";
+          picturecheck2.style.fontWeight = "bold";
+          picturecheck1.style.color = "#aaaaaa";
+          picturecheck1.style.backgroundColor = "white";
+          picturecheck1.style.borderColor = "#e6e6e6";
+          picturecheck1.style.fontWeight = "400";
+          updateValues();
+        }
+      });
+
+      //인쇄코드 오류 검수
+      const warning_printcode1 = document.querySelectorAll(
+        ".warningMessage_printcode1"
+      );
+      const warning_printcode2 = document.querySelectorAll(
+        ".warningMessage_printcode2"
+      );
+      const print_code = document.querySelectorAll(".print_code");
+
+      function updateWarnings(index, warning1Visible, warning2Visible) {
+        warning_printcode1[index].style.display = warning1Visible
+          ? "inline-block"
+          : "none";  
+        warning_printcode2[index].style.display = warning2Visible
+          ? "inline-block"
+          : "none";
+        
+      }
+
+      print_code.forEach((inputElement, index) => {
+        inputElement.addEventListener("input", function () {
+          const printcodeValue = inputElement.value.trim();
+
+          if (printcodeValue.length !== 7) {
+            updateWarnings(index, true, false);
+          } 
+          else {
+            if(printcodeValue[0] === "9"){
+              updateWarnings(index, false, true);
+              inputElement.value = "";
+            }
+            else{
+              updateWarnings(index, false, false);
+            }
+          }
+          finalbuttonState();
+        });
+      });
+
+      //드롭다운메뉴 부분
+      const dropdowns = document.querySelectorAll(".dropdown");
+      const dropdownLists = document.querySelectorAll(".dropdown-list");
+      let option_arr = new Array();
+
+      dropdownLists.forEach((list, index) => {
+        list.style.display = "none";
+
+        dropdowns[index].addEventListener("click", function () {
+          dropdowns[index].classList.toggle("active");
+          if (dropdownLists[index].style.display === "none") {
+            dropdownLists[index].style.display = "inline-block";
+          } else {
+            dropdownLists[index].style.display = "none";
+          }
+          dropdownLists[index].classList.toggle("opened");
+        });
+
+        const options = dropdownLists[index].getElementsByTagName("li");
+
+        for (let i = 0; i < options.length; i++) {
+          options[i].addEventListener("click", function () {
+            dropdowns[index].textContent = options[i].textContent;
+            option_arr[index] = i;
+            updateValues();
+            finalbuttonState();
+            dropdowns[index].style.color = "black";
+            options[i].style.backgroundColor = "rgba(253, 236, 237, 1)";
+            options[i].style.color = "#e7404a";
+
+            for (let j = 0; j < options.length; j++) {
+              if (j !== i) {
+                changeColordefault(options[j]);
+              }
+            }
+            dropdowns[index].classList.toggle("active");
+            dropdownLists[index].style.display = "none";
+            dropdownLists[index].classList.toggle("opened");
+          });
+        }
+      });
+
+      function changeColordefault(option) {
+        option.style.backgroundColor = "#fff";
+        option.style.color = "#000000";
+      }
+
+      /*페이지수, 출력횟수 부분*/
+      const pageCounts = document.querySelectorAll(".page_count");
+      const printCounts = document.querySelectorAll(".print_count");
+      const decreaseButtons = document.querySelectorAll(".xi-minus-circle");
+      const increaseButtons = document.querySelectorAll(".xi-plus-circle");
+      const printtitle = document.querySelectorAll(".print_title");
+      const pagetitle = document.querySelectorAll(".page_title");
+
+      const minCount = 0;
+      const maxCount = 1000;
+
+      function updateCount(inputElement, newvalue) {
+        inputElement.value = newvalue;
+        checkButtonState(inputElement);
+        updateValues();
+        finalbuttonState();
+      }
+
+      function checkButtonState(inputElement) {
+        const decreaseButton = inputElement.previousElementSibling;
+        const increaseButton = inputElement.nextElementSibling;
+
+        const currentValue = parseInt(inputElement.value);
+
+        decreaseButton.disabled = currentValue <= minCount;
+        decreaseButton.style.color =
+          currentValue <= minCount ? "#aaaaaa" : "black";
+        decreaseButton.style.cursor =
+          currentValue <= minCount ? "default" : "pointer";
+
+        increaseButton.disabled = currentValue >= maxCount;
+        increaseButton.style.color =
+          currentValue >= maxCount ? "#aaaaaa" : "black";
+        increaseButton.style.cursor =
+          currentValue >= maxCount ? "default" : "pointer";
+
+         // Check if inputElement is in printCounts
+        if (Array.from(printCounts).some((element) => element === inputElement)) {
+          const index = Array.from(printCounts).indexOf(inputElement);
+          // Update the corresponding printtitle color
+          if (decreaseButton.style.color === "black") {
+            printtitle[index].style.color = "black";
+          } else {
+            printtitle[index].style.color = "#aaaaaa";
+          }
+        } else if (Array.from(pageCounts).some((element) => element === inputElement)) {
+          // Check if inputElement is in pageCounts
+          const index = Array.from(pageCounts).indexOf(inputElement);
+          // Update the corresponding pagetitle color
+          if (decreaseButton.style.color === "black") {
+            pagetitle[index].style.color = "black";
+          } else {
+            pagetitle[index].style.color = "#aaaaaa";
+          }
+        }
+      }
+
+      function handleButtonClick(event) {
+        const inputElement = event.target.parentNode.querySelector("input");
+        const currentValue = parseInt(inputElement.value);
+
+        if (
+          event.target.classList.contains("xi-minus-circle") &&
+          currentValue > minCount
+        ) {
+          updateCount(inputElement, currentValue - 1);
+        } else if (
+          event.target.classList.contains("xi-plus-circle") &&
+          currentValue < maxCount
+        ) {
+          updateCount(inputElement, currentValue + 1);
+        }
+      }
+
+      function addEventListeners(inputElements) {
+        inputElements.forEach((inputElement) => {
+          inputElement.addEventListener("change", () => {
+            const currentValue = parseInt(inputElement.value);
+
+            if (
+              !isNaN(currentValue) &&
+              currentValue >= minCount &&
+              currentValue <= maxCount
+            ) {
+              updateCount(inputElement, currentValue);
+            } else {
+              // 유효하지 않은 값이 입력되었을 때 초기 값으로 복원
+              updateCount(inputElement, minCount);
+            }
+          });
+
+          inputElement.addEventListener("keydown", (event) => {
+            // Allow only numeric input and prevent 'e' character
+            if (event.key === "e") {
+              event.preventDefault();
+            }
+          });
+        });
+      }
+
+      addEventListeners(pageCounts);
+      addEventListeners(printCounts);
+
+      decreaseButtons.forEach((decreaseButton) => {
+        decreaseButton.addEventListener("click", handleButtonClick);
+      });
+
+      increaseButtons.forEach((increaseButton) => {
+        increaseButton.addEventListener("click", handleButtonClick);
+      });
+
+      // 초기 상태에서 버튼 상태 확인
+      pageCounts.forEach(checkButtonState);
+      printCounts.forEach(checkButtonState);
+
+      /*각 코드의 합계 금액, 총 장 수 */
+      const codeprice_sum = document.querySelectorAll(".codeprice_sum");
+      const codepage_sum = document.querySelectorAll(".codepage_sum");
+      const totalsumprice = document.getElementById("total_sum");
+      const totalsumpages = document.getElementById("total_pages");
+      function caculate_page(numpage, numprint){
+        return numpage * numprint;
+      }
+      
+      function caculate_price(option_index, numpage, numprint){
+        let size = 0;
+        if (option_index == 0){
+          size = 1000;
+        }
+        else if(option_index == 1 || option_index == 2){
+          size = 2000;
+        }
+        else if(option_index == 3){
+          size = 4000;
+        }
+
+        return size * numpage * numprint + numprint * 100;//8월 오픈 베타 프로모션 기간
+      }
+      
+      const bottom_topcolor = document.querySelector(".bottom_topline");
+      //가격 업데이트
+      function updateValues() {
+        var totalprice = 0;
+        var totalpages = 0;
+        
+        if(photo1.checked){
+          totalprice = 500;
+        }
+
+        // Update each code's price and page count
+        codepage_sum.forEach((codepage, index) => {
+          const numpage = parseInt(pageCounts[index].value);
+          const numprint = parseInt(printCounts[index].value);
+          codepage.textContent = formatAmount2(caculate_page(numpage, numprint));
+          totalpages = totalpages + caculate_page(numpage, numprint);
+        });
+
+        codeprice_sum.forEach((codeprice, index) => {
+          const numpage = parseInt(pageCounts[index].value);
+          const numprint = parseInt(printCounts[index].value);
+          codeprice.textContent = formatAmount(caculate_price(option_arr[index], numpage, numprint));
+          totalprice = totalprice + caculate_price(option_arr[index], numpage, numprint);
+        });
+        
+        totalsumprice.textContent = formatAmountFortotal(totalprice);
+        totalsumpages.textContent = totalpages;
+        
+        if (totalpages == 0 && totalprice == 0){
+          bottom_topcolor.style.color = "#aaaaaa";
+        }
+        else{
+          bottom_topcolor.style.color = "#e7404a";
+        }
+        
+        // finalbuttonState();
+      }
+
+
+      printCounts.forEach((printCount) => {
+        printCount.addEventListener("input", updateValues);
+        // printCount.addEventListener("input", finalbuttonState);
+      });
+
+      pageCounts.forEach((pagecount) => {
+        pagecount.addEventListener("input", updateValues);
+        // pageCount.addEventListener("input", finalbuttonState);
+      });
+
+      // Call updateValues() initially to set the values
+      updateValues();
+
+      //각 코드 입력값 활성화 버튼
+      const togglebutton = document.querySelectorAll(".xi-toggle-on");
+      let toggle_arr = new Array();
+      const pageself = document.querySelectorAll(".page");
+      const printself = document.querySelectorAll(".print");
+
+      //Initialize the toggle_arr with true values
+      togglebutton.forEach((button, index) => {
+        toggle_arr.push(false); // Set all buttons to false initially        
+      });
+
+      // Set the first button to true
+      toggle_arr[0] = true;
+
+      function toggleButton(index) {
+        toggle_arr[index] = !toggle_arr[index]; // Toggle the state
+
+        if (!toggle_arr[index]) {
+          // If the toggle is on (false), apply the styles accordingly
+          togglebutton[index].style.transform = "rotateY(180deg)";
+          togglebutton[index].style.color = "#e6e6e6";
+
+          // 인쇄코드
+          print_code[index].value = "";
+          print_code[index].disabled = true;
+          print_code[index].classList.add("disabled-div");
+          updateWarnings(index, false, false);
+
+          // 페이지
+          pageCounts[index].value = "0";
+          pageself[index].classList.add("disabled-div");
+          pageCounts[index].disabled = true;
+          checkButtonState(pageCounts[index]);
+
+          //프린트
+          printCounts[index].value = "0";
+          printself[index].classList.add("disabled-div");
+          printCounts[index].disabled = true;
+          checkButtonState(printCounts[index]);
+
+          //드롭다운 
+          dropdowns[index].textContent = "상품명(사이즈)";
+          dropdowns[index].style.color = "#aaaaaa";
+          if(dropdownLists[index].style.display === "inline-block"){
+            dropdowns[index].classList.toggle("active");
+            dropdownLists[index].style.display = "none";
+            dropdownLists[index].classList.toggle("opened");
+          }
+          dropdowns[index].classList.add("disabled-div");
+          
+          option_arr[index] = undefined; // Reset the selected option
+          
+          const options = dropdownLists[index].getElementsByTagName("li");
+
+          for (let option of options) {
+            changeColordefault(option);
+          }
+          codeprice_sum[index].textContent = "0";
+          codepage_sum[index].textContent = "0";
+          
+          updateValues();
+          finalbuttonState();
+        } else {
+          // If the toggle is off (false), apply the default styles
+          togglebutton[index].style.transform = "rotateY(0deg)";
+          togglebutton[index].style.color = "#e7404a";
+
+          //인쇄코드
+          print_code[index].disabled = false;
+          print_code[index].classList.remove("disabled-div");
+          
+          //페이지
+          pageCounts[index].disabled = false;
+          pageself[index].classList.remove("disabled-div");
+          
+          //프린트
+          printCounts[index].disabled = false;
+          printself[index].classList.remove("disabled-div");
+          
+          //드롭다운
+          dropdowns[index].classList.remove("disabled-div");
+          finalbuttonState();
+        }
+      }
+
+      togglebutton.forEach((button, index) => {
+      // Add the .disabled-div class to all elements except the first one
+        if (index !== 0) {
+          print_code[index].disabled = true;
+          print_code[index].classList.add("disabled-div");
+
+          pageCounts[index].disabled = true;
+          pageself[index].classList.add("disabled-div");
+
+          printCounts[index].disabled = true;
+          printself[index].classList.add("disabled-div");
+
+          dropdowns[index].classList.add("disabled-div");
+        }
+        
+        button.addEventListener("click", () => {
+          toggleButton(index);
+        });
+      });
+
+      //버튼과 위의 전체 금액과 장수 활성화부분
+
+      //금액 표시 함수
+      function formatAmount(amount) {
+        // Convert the amount to a number if it's not already
+        const numAmount = Number(amount);
+
+        // Check if the number is valid
+        if (isNaN(numAmount)) {
+          numAmount = 0;
+          return numAmount;
+        }
+
+        // Format the number using the toLocaleString() method
+        const formattedAmount = numAmount.toLocaleString("ko-KR", {
+          minimumFractionDigits: 0,
+        });
+
+        return formattedAmount;
+      }
+      
+            //금액 표시 함수
+      function formatAmountFortotal(amount) {
+        // Convert the amount to a number if it's not already
+        const numAmount = Number(amount);
+
+        // Format the number using the toLocaleString() method
+        const formattedAmount = numAmount.toLocaleString("ko-KR", {
+          minimumFractionDigits: 0,
+        });
+
+        return formattedAmount;
+      }
+
+      //장수 표시 함수
+      function formatAmount2(amount) {
+        // Convert the amount to a number if it's not already
+        const numAmount = Number(amount);
+
+        // Check if the number is valid
+        if (isNaN(numAmount)) {
+          numAmount = 0;
+        }
+        return numAmount;
+      }
+
+      //마지막 버튼 부분      
+      const finalbutton = document.getElementById("final_confirm_btn");
+      
+      function finalbuttonState(){
+        //첫번째 조건(주문자 정보)
+        var condition1 = 0;
+        var con1_var1 = 0;
+        var con1_var2 = 0;
+
+        var inputText = namefield.value.trim();
+        if (inputText.length >= 2) {
+          con1_var1 = 1;//name만족
+        }
+        //전화번호가 체크되어 있으면 전화번호 조건 만족, 아니면 이메일 만족
+        if(order1.checked){
+          var phone2Value = phone2Input.value.trim();
+          var phone3Value = phone3Input.value.trim();
+          
+          if (phone2Value.length == 4 && phone3Value.length == 4) {
+            con1_var2 = 1;
+          }
+        }
+        else if(order2.checked){
+          if(check_mail()){
+            con1_var2 = 1;
+          }
+        }
+
+        condition1 = con1_var1 * con1_var2;
+
+        // 두번째 조건(if 활성화 버튼 = true, 인쇄코드, 상품명, 페이지수, 출력횟수)        
+        var condition2 = 1;
+
+        for (let index = 0; index < toggle_arr.length; index++) {
+          if (toggle_arr[index]) {
+            const printinput = print_code[index].value.trim();
+
+            if (printinput.length !== 7){
+              condition2 = 0;
+              break;
+            }
+            
+            if(pageCounts[index].value == 0 || printCounts[index].value == 0){
+              condition2 = 0;
+              break;
+            }
+
+            const option_num = option_arr[index];
+
+            if (option_num != 0 && option_num != 1 &&  option_num != 2 && option_num != 3){
+              condition2 = 0;
+              break;
+            }
+          }
+        }
+        
+        if (condition1 == 1 && condition2 == 1){
+          finalbutton.disabled = false; 
+        }
+        else{
+          finalbutton.disabled = true;
+        }
+      }
+
+      finalbuttonState();
+
+      //pop업 창 부분
+      const popup = document.getElementById("pop");
+      const closeButton = document.getElementById("cancel_btn");
+      const sendinfo_btn = document.getElementById("checked_btn");
+      const popup2 = document.getElementById("pop2");
+      const popup3 = document.getElementById("pop3");
+      const cancelButton = document.getElementById("cancel_btn2");
+      
+      // Function to show the popup
+      function showPopup() {
+        if(available === "1" || available === "2"){ 
+          //////////////////////////////////////////////////////////////////////////////////////////////
+          /////////////////////////////////////////////////////////////////////////////////////////////////
+          //!!!!!!!!!지금은 테스트하느라 available === 3 넣은거니까 나중에 꼭빼라 지원아!!!!!!!!!!!!!!!!
+          popup.style.display = "inline-block";
+        }
+        else{
+          popup3.style.display = "inline-block";
+        }
+      }
+
+      // Function to hide the popup
+      function hidePopup() {
+        popup.style.display = "none";
+      }
+      
+      // Function to show the popup
+      function showPopup2() {
+        popup2.style.display = "inline-flex";
+      }
+
+      // Function to hide the popup
+      function hidePopup3() {
+        popup3.style.display = "none";
+      }
+      
+      finalbutton.addEventListener("click", showPopup);
+      // Add event listeners to the button and close button
+      closeButton.addEventListener("click", hidePopup);
+      sendinfo_btn.addEventListener("click", showPopup2);
+      cancelButton.addEventListener("click", hidePopup3);
+      sendinfo_btn.addEventListener("click", sendMessage);
+
+      //시간에 따라 제출버튼 활성화 여부
+
+      /*첫번째 조건: COMM.SWITCH(On(1)/OFF(0)) 
+      --> 여기가 관리자가 직접 적용할 수 있는 곳!!!!!!!!!*/
+      var comm_switch = "1";
+      /*default값은 1(on)* --> 대행신청서::휴무 상태 띄우고 싶으면 "0"으로 바꾸세요!!!!!!!*/
+
+      /*두번째 조건: weekday(MON(1), TUE(2), WED(3), THR(4), FRI(5), SAT(6), SUN(0))*/
+      var weekday = 1; /*지금은 MON인 상태*/
+
+      /*세번째 조건: 1 작업 가능 시간: time(start_time1(000000)~end_time1(095959), 
+      2 작업 가능 시간: start_time2(100000)~end_time2(155959),
+      3 작업 가능 시간: start_time3(160000)~end_time3(235959))*/
+
+      var first_start_time1 = "100000"; //파트 1 시작 시간
+      var first_end_time1 = "130000"; // 파트 1 종류 시간
+
+      var first_start_time2 = "160000"; //파트 2 시작 시간
+      var first_end_time2 = "190000"; // 파트 2 종류 시간
+
+      var part_time = "1"; //파트 시간(1~3)에 따라 (파트 1에 해당 -> 1, 2에 해당 ->2, 3에 해당 ->3)
+      var available = "1"; //제출 파트 가능한 시간(1,2), 안되는 시간(3)
+
+      /*시간 각각 HH:MM:SS 형식으로 바꾸는 함수*/
+      function pluszero(time) {
+        var time = time.toString(); // 시간을 숫자에서 문자로 바꿈
+        if (time.length < 2) {
+          //2자리 보다 작다면
+          time = "0" + time; //숫자앞 0을 붙여줌
+          return time; //값을 내보냄
+        } else {
+          return time; //2자리라면 값을 내보냄
+        }
+      }
+
+      function getnow() {
+        // 1. 현재 시간(Locale)
+        const curr = new Date();
+
+        // 2. UTC 시간 계산
+        const utc = curr.getTime() + curr.getTimezoneOffset() * 60 * 1000;
+
+        // 3. UTC to KST (UTC + 9시간)
+        const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+        const kr_curr = new Date(utc + KR_TIME_DIFF);
+
+        var nowHour = kr_curr.getHours(); // 시
+        var nowMins = kr_curr.getMinutes(); // 분
+        var nowSec = kr_curr.getSeconds(); //초
+        weekday = kr_curr.getDay(); //요일 (0(일)~6(토) 중 하나)
+
+        nowHour = pluszero(nowHour);
+        nowMins = pluszero(nowMins);
+        nowSec = pluszero(nowSec);
+
+        var nowtime = nowHour + nowMins + nowSec; // 시+분+초 (HHMMSS)
+
+        //현재 nowtime이 어느 part_time에 속하는지 지정
+        if (first_start_time1 <= nowtime && nowtime <= first_end_time1) {
+          part_time = "1";
+        } else if (first_start_time2 <= nowtime && nowtime <= first_end_time2) {
+          part_time = "2";
+        } else {
+          part_time = "3";
+        }
+
+        /* 1차 주문 접수 활성화를 위한 조건문 */
+        if (comm_switch == "1" && weekday != 0 && part_time == "1") {
+          available = "1";
+        }
+        //2차 주문 접수 활성화 조건문
+        else if (
+          comm_switch == "1" &&
+          weekday != 6 &&
+          weekday != 0 &&
+          part_time == "2"
+        ) {
+          available = "2";
+        } else {
+          //3차 영업 준비중-->제출 불가
+          available = "3";
+        }
+      }
+
+      //반복 실행시키는 함수를 이용해서 계속 정보 업데이트 하기 1000ms, 즉, 1초당 한번씩 실행 시키고 있음
+      function init() {
+        setInterval(getnow, 1000);
+      }
+
+      init();
+
+      //정보를 구글 코드로 보내는 함수
+      function sendMessage() {
+        //E열 전화번호
+        var sphone1 = "";
+        var sphone2 = "";
+        
+        var sfinalphone = "";
+
+        //F열 이메일
+        var semail = "";  
+
+        //C열 주문방법(카카오전화//이메일)
+        var sordermethod = "";
+
+        if(order1.checked){
+          sordermethod = order1.value; 
+          sphone1 = phone2Input.value;
+          sphone2 = phone3Input.value;
+        
+          sfinalphone = '010' + sphone1 + sphone2;
+        }
+        else if(order2.checked){
+          sordermethod = order2.value;
+          semail = emailfield.value;
+        }
+
+        //D열 이름
+        var sname = namefield.value;
+
+        //G열 인증사진
+        var sphoto ="";
+        if(photo1.checked){
+          sphoto = photo1.value;
+        }
+        else if(photo2.checked){
+          sphoto = photo2.value;
+        }
+
+        //총결제 금액, 총 개수
+        var totalprice = 0;
+        var totalpages = 0;
+
+        if(photo1.checked){
+          totalprice = 500;
+        }
+
+        //대행코드 만들기
+        let eachproxyCode = new Array();
+        let eachcodePrice = new Array();
+        let eachcodePages = new Array();
+
+        for(var i = 0; i < 10; i++){
+          if(toggle_arr[i]){
+            //토글이 on일때만 null 기본값에서 real value로 변경하기
+            eachproxyCode[i] = print_code[i].value + "-" + (option_arr[i]+1) + "-" + pageCounts[i].value + "-"+printCounts[i].value;
+
+            // eachcodePrice[i] = formatAmount(codeprice_sum[i].value) + "원";
+            eachcodePrice[i] = caculate_price(option_arr[i], parseInt(pageCounts[i].value), parseInt(printCounts[i].value));
+            totalprice = totalprice + eachcodePrice[i];
+
+            eachcodePages[i] = caculate_page(parseInt(pageCounts[i].value), parseInt(printCounts[i].value));
+            totalpages = totalpages + eachcodePages[i];
+          }
+          else{
+            eachproxyCode[i] = "";
+            eachcodePrice[i] = "";
+            eachcodePages[i] = "";
+          }
+        }
+
+        let codes = new Array();
+
+        for(var j = 0; j < 10; j++){
+          codes[j] = [eachproxyCode[j],eachcodePrice[j],eachcodePages[j]]; 
+        }
+
+
+        //미입금, 숫자 0
+        var sString = "미입금";
+        var sNumber = "";
+
+        google.script.run.sendToSpreadsheet(sordermethod, sname, sfinalphone, semail, sphoto, codes, totalprice, totalpages, sString, sNumber);
+      }
+
+    </script>
+  </body>
+</html>

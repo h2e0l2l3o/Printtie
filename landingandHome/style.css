@@ -1,0 +1,322 @@
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+@import url("https://fonts.cdnfonts.com/css/lemonmilk");
+
+body {
+  font-family: "NanumSquare", sans-serif;
+  text-align: left;
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+  /* background-color: salmon; */
+  /* -webkit-text-size-adjust: 100%; */
+  background-color: #f6f6f6;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  margin: auto;
+  margin-top: 0;
+  top: 0;
+  /* max-width: 90vw; */
+  width: 500px;
+  background-color: white;
+  padding-bottom: 2rem;
+}
+
+header {
+  position: relative;
+  height: auto;
+  padding-top: 3rem;
+  padding-left: 2rem;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.medium_title {
+  color: #000000;
+  position: relative;
+  /* top: 50px; */
+  font-size: 1rem;
+  margin-bottom: 0.1rem;
+  text-indent: 1.3rem;
+  font-weight: 600;
+  /* padding: 1rem; */
+  /* background-color: aliceblue; */
+}
+
+.title {
+  color: #000000;
+  position: relative;
+  font-size: 3rem;
+  font-weight: 800;
+  display: inline-flex;
+  /* background-color: aqua; */
+  /* text-indent: 1rem; */
+}
+
+.title .title1 {
+  text-indent: 1.2rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+  font-family: "Lemon/Milk", sans-serif;
+}
+
+.Discription {
+  position: relative;
+  width: 100%;
+  height: auto;
+  line-height: normal;
+  display: inline-flex;
+  flex-direction: column;
+  /* background-color: pink; */
+  align-items: left;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  /* word-wrap: break-word; */
+}
+
+.Discription table {
+  /* background-color: antiquewhite; */
+  position: relative;
+  text-align: left;
+  align-items: left;
+  height: auto;
+  display: inline-flex;
+  justify-content: left;
+  padding-left: 3rem;
+}
+
+.Discription table tr td {
+  font-size: 110%;
+  font-weight: 600;
+  padding-bottom: 20px;
+}
+
+i {
+  align-items: center;
+  color: white;
+  font-size: 100%;
+  background-color: rgba(231, 64, 74, 1);
+  padding: 6px 6px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 1rem;
+  position: relative;
+  display: inline-block;
+  /* vertical-align: bottom; */
+}
+
+.main {
+  display: inline-flex;
+  /* background-color: aquamarine; */
+  width: 100%;
+  flex-direction: column;
+  align-items: left;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  /* word-wrap: break-word; */
+  padding-left: 3rem;
+  padding-right: 3rem;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.main .submain {
+  /* background-color: blanchedalmond; */
+  text-align: left;
+}
+
+.medium_title2 {
+  align-self: flex-start;
+  /* background-color: bisque; */
+  display: inline-block;
+  text-align: left;
+  font-size: 110%;
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.main .applyBtn {
+  /* background-color: yellowgreen; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main .applyBtn button {
+  font-family: "NanumSquare", sans-serif;
+  border: none;
+  padding: 1rem 4rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  font-weight: 600;
+  box-sizing: border-box;
+  color: black;
+  font-size: 110%;
+  cursor: pointer;
+  background-color: rgba(246, 246, 246, 1);
+  position: relative;
+}
+
+#proxyService {
+  background-color: rgba(231, 64, 74, 1);
+  color: white;
+}
+
+.bottom {
+  display: inline-flex;
+  /* background-color: skyblue; */
+  width: 100%;
+  flex-direction: column;
+  align-items: left;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  word-wrap: break-word;
+  position: relative;
+}
+.bottom .subbottom {
+  /* background-color: blanchedalmond; */
+  text-align: left;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.bottom .kakaoBtn {
+  /* background-color: ivory; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bottom .kakaoBtn button {
+  border: none;
+  padding: 1rem 4rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  font-weight: 600;
+  box-sizing: border-box;
+  color: black;
+  font-size: 110%;
+  cursor: pointer;
+  background-color: #ffe402;
+  font-family: "NanumSquare", sans-serif;
+}
+
+/* 미디어 쿼리 */
+/* 태블릿 환경 스타일링 */
+@media only screen and (max-width: 768px) {
+  .container {
+    max-width: 90vw;
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 0.8rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 0.3rem;
+  }
+
+  h2 .title1,
+  h2 .title2 {
+    font-size: 1.6rem;
+  }
+
+  h2 .title3 {
+    padding-left: 0.5%;
+    padding-top: 0.3rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  .Discription table tr td {
+    font-size: 1.2rem;
+  }
+
+  i {
+    font-size: 0.9rem;
+  }
+
+  .medium_title2 {
+    font-size: 110%;
+  }
+  .main .applyBtn button,
+  .bottom .kakaoBtn button {
+    padding: 0.8rem 6rem;
+    font-size: 1.1rem;
+  }
+  .bottom .kakaoBtn button {
+    padding: 0.8rem 5.33rem;
+  }
+}
+
+/* 모바일 환경 스타일링 */
+@media only screen and (max-width: 480px) {
+  .container {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.6rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+
+  h2 .title1,
+  h2 .title2 {
+    font-size: 1.6rem;
+  }
+
+  h2 .title3 {
+    padding-left: 0.5%;
+    padding-top: 0.3rem;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+  }
+
+  .Discription table tr td {
+    font-size: 1rem;
+  }
+
+  i {
+    font-size: 0.8rem;
+    margin-right: 0.7rem;
+  }
+
+  .medium_title2 {
+    font-size: 1rem;
+  }
+
+  .main .applyBtn button,
+  .bottom .kakaoBtn button {
+    padding: 0.8rem 4rem;
+    font-size: 1rem;
+  }
+  .bottom .kakaoBtn button {
+    padding: 0.8rem 3.33rem;
+  }
+}
