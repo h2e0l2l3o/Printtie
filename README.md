@@ -9,7 +9,9 @@ has been integrated to facilitate customer consultations through this platform.
 
 ## First Page (Homepage)
 
-<img width="736" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/3d711f72-0cf8-4271-bc11-33f11c4a9a8d">
+<img width="1000" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/3d711f72-0cf8-4271-bc11-33f11c4a9a8d">
+
+
 Based on the designed wireframes from Axure which is a UX design tool, I made the homepage and added functions needed. 
 Once the first button is clicked, it goes to the page where users can order photos
 Once the second button is clicked, it goes to the page where users can request the delivery
@@ -18,39 +20,57 @@ Once the fourth button is clickes, it goes to the Kakaotalk chat page for custom
 
 ## Revised Homepage
 
-<img width="149" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/a115b0b3-b467-4ec8-acc3-ada290133a16">
-<img width="142" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/2f54b0a3-f3e7-4dc1-a59e-a555c7075ba0">
+<img width="500" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/a115b0b3-b467-4ec8-acc3-ada290133a16">
+
+
+<img width="500" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/2f54b0a3-f3e7-4dc1-a59e-a555c7075ba0">
+
+
 This is the revised page.
 
 ## The Proxy Application Page (the first tab page)
 
-<img width="101" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/82a80d30-47b4-4c55-acc7-36628b20a40f">
-<img width="80" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/1ba8550a-b158-4f3f-a51e-8e9c6427e0b0">
+<img width="500" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/82a80d30-47b4-4c55-acc7-36628b20a40f">
+
+
+<img width="300" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/1ba8550a-b158-4f3f-a51e-8e9c6427e0b0">
 
 ### Options that customers can choose
 There are 4 options that users can choose. Those are printing methods. Four of them are not available now, so I made those elements disabled so that users can choose the only avialable option.
-<img width="273" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/6e1a2e5b-40bb-4128-abeb-40d8806a15c5">
+
+
+<img width="500" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/6e1a2e5b-40bb-4128-abeb-40d8806a15c5">
 
 ### FAQ(Frequently asked questions)s Section
-<img width="475" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/7f6eb42e-a9da-4204-ae44-a2da21d6f780">
+<img width="800" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/7f6eb42e-a9da-4204-ae44-a2da21d6f780">
+
+
 The section has been created in a dropdown format to display frequently asked questions (FAQs) and their corresponding answers for customers.
 
 
 
 ## The Delivery Application Page (the second tab page)
 
-<img width="80" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/35f90c36-af09-4f59-8519-3d47ee2c23a2">
+<img width="500" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/35f90c36-af09-4f59-8519-3d47ee2c23a2">
 
 ### FAQ(Frequently asked questions)s Section
-<img width="491" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/4f12e680-28cd-42cf-83bd-b1cc60c746e0">
+<img width="800" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/4f12e680-28cd-42cf-83bd-b1cc60c746e0">
+
+
 The section has been created in a dropdown format to display frequently asked questions (FAQs) and their corresponding answers for customers.
 
 ## Designed Logic for Getting orders Based on available time
 
-<img width="776" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/02bd78b9-07c2-4d5b-89c6-56f23a07e330">
-<img width="380" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/38d6ccd2-b049-408f-8d15-7f3a28ab75ea">
-<img width="129" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/44db6d21-ce47-4b34-945e-01f6456c2a65">
-<img width="127" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/c8a45cd6-fda0-4469-a347-ac13fa388352">
+<img width="1000" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/02bd78b9-07c2-4d5b-89c6-56f23a07e330">
+
+
+<img width="500" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/38d6ccd2-b049-408f-8d15-7f3a28ab75ea">
+
+
+<img width="400" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/44db6d21-ce47-4b34-945e-01f6456c2a65">
+
+
+<img width="400" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/c8a45cd6-fda0-4469-a347-ac13fa388352">
 
 
 I have implemented a logic based on time to enable customers to place orders according to designated time slots. 
