@@ -394,7 +394,7 @@ Page where users can inquiry the order history.
 <img width="400" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/c4eec7f8-652a-4082-8cd9-69a590e494c8">
 
 
-## Data Flow
+## Data Flow Chart
 
 <img width="500" alt="image" src="https://github.com/h2e0l2l3o/Printtie/assets/122464604/2ce9dbd0-ef81-410b-9edf-9ff978f505b3">
 
